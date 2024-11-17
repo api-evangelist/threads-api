@@ -10,12 +10,78 @@ apis:
     properties:
       - url: https://developers.facebook.com/docs/threads/
         type: Documentation
+      - type: OpenAPI
+        url: properties/threads-api.yml
     description: >-
-      Threads is an app from Instagram where you can view and share public
-      conversations. Depending on how you use Threads, you can also post
-      threads, reply to others and follow profiles you're interested in. Threads
-      and replies can include short pieces of text, links, photos, videos or any
-      combination of them.
+      Welcome to the Threads API from Meta. This collection contains the [Graph
+      API](https://developers.facebook.com/docs/graph-api/) requests to create,
+      manage, and publish Threads content, programmatically. For the full
+      Threads documentation, refer to the [developers
+      documentation](https://developers.facebook.com/docs/threads). # Getting
+      Started ## Step 1 - Create a Meta App You need to [create a&nbsp;Meta app
+      with the&nbsp;Threads use
+      case](https://developers.facebook.com/docs/threads/get-started#meta-app).
+      ## Step 2 - Enable App Users To Authorize Data Access To Your App App
+      users must authorize data access for the app you are developing. Ensure
+      that proper authorization protocols are implemented to comply with data
+      privacy and security requirements. For detailed instructions and
+      guidelines, refer to the [authorization
+      documentation](https://developers.facebook.com/docs/threads/get-started#authorization).
+      ## Step 3 - Request an Access Token
+
+      ### API Provisioned Token To request an access token via the API, use the
+      requests under the _**Authorization**_ folder within this collection. See
+      the [Threads User Access
+      Tokens](https://developers.facebook.com/docs/threads/get-started#threads-user-access-tokens)
+      section in the Threads API documentation for details on authenticating
+      your requests. Once you have an access token, you will need to manually
+      add the **access_token** header to your requests with this value.
+
+      Note: You can receive an access token for your requests either by using
+      the requests under the _**Authorization**_ folder within this collection,
+      or by using the _Authorization_ tab above in which the token will be
+      provisioned by Postman.
+
+      ### Postman Provisioned Token If using the _Authorization_ tab to receive
+      an access token, make sure to include the following:
+
+      - Grant Type must be **Authorization Code** - You must supply the values
+      for your Auth URL, Access Token URL, Client ID (your Threads app's ID),
+      Client Secret (your Threads app's secret), and Scope.
+          
+      After these values are entered, you may press **Get New Access Token** at
+      the bottom of the page to receive an access token. This access token will
+      automatically be attached to your requests.
+
+      ### Access token debugger You can paste any token you generate into the
+      [access token
+      debugger](https://developers.facebook.com/tools/debug/accesstoken/) to see
+      what type of token it is and what permission you have granted to your app.
+
+      # Limitations Please be aware that certain limitations may apply to the
+      API usage. For the most accurate and up-to-date details, we strongly
+      recommend referring to the online documentation. Visit the [developer
+      documentation](https://developers.facebook.com/docs/threads/overview#rate-limiting)
+      for more information.
+
+      # Using Variables When using variables in requests (see the _Variables_
+      tab above), make sure to **save the updated values** after modifying them
+      (e.g. with Ctrl-S / Cmd-S). The values must be saved in the _Variables_
+      tab each time they are modified.
+
+      # Autosaving Variables Variable values may be auto-updated and saved after
+      a request. For example, when a new Thread is published, the _thread_id_
+      field can be auto-updated with the new Thread ID to be used in retrieval
+      requests.
+
+      To use this feature, make sure to **set the auto_save_variables variable
+      value to true**. Otherwise, variables will not be auto-updated and you
+      will need to update them manually.
+
+      # Installation Fork this collection into Postman to start using the
+      Threads API. You can generate the code for the API calls in your language
+      by following the steps here:
+      [https://learning.postman.com/docs/sending-requests/generate-code-snippets/#generating-code-snippets-in-postman](https://learning.postman.com/docs/sending-requests/generate-code-snippets/#generating-code-snippets-in-postmanEnvironmentChangelogUpdates)
 name: Threads API
 tags:
   - Social Networks
