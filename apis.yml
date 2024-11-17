@@ -38,3 +38,17 @@ maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
 specificationVersion: '0.19'
+common:
+  - name: Get Started - Threads API
+    url: https://developers.facebook.com/docs/threads/get-started
+    type: GettingStarted
+  - name: Get Access Tokens and Permissions - Threads API
+    url: >-
+      https://developers.facebook.com/docs/threads/get-started/get-access-tokens-and-permissions
+    type: Authentication
+  - name: Changelog - Threads API
+    url: https://developers.facebook.com/docs/threads/changelog
+    type: ChangeLog
+  - name: Webhooks - Threads API
+    url: https://developers.facebook.com/docs/threads/webhooks
+    type: Webhooks
