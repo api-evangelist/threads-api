@@ -5,15 +5,17 @@ apis:
   - aid: threads-api:threads-api
     name: Threads API
     tags:
-      - API
+      - Social Networks
     humanURL: https://developers.facebook.com/docs/threads/
     properties:
       - url: https://developers.facebook.com/docs/threads/
         type: Documentation
     description: >-
-      The Threads API enables developers to build their own unique integrations,
-      and helps creators and brands manage their Threads presence at scale and
-      easily ...
+      Threads is an app from Instagram where you can view and share public
+      conversations. Depending on how you use Threads, you can also post
+      threads, reply to others and follow profiles you're interested in. Threads
+      and replies can include short pieces of text, links, photos, videos or any
+      combination of them.
 name: Threads API
 tags:
   - Social Networks
