@@ -52,3 +52,6 @@ common:
   - name: Webhooks - Threads API
     url: https://developers.facebook.com/docs/threads/webhooks
     type: Webhooks
+  - name: Postman Workspace
+    url: https://www.postman.com/meta/threads/overview
+    type: PostmanWorkspace
