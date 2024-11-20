@@ -1,0 +1,19 @@
+meta {
+  name: Get Post Insights
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/:thread_id/insights
+  body: none
+  auth: none
+}
+
+params:query {
+  ~metric: 
+}
+
+params:path {
+  thread_id: 
+}

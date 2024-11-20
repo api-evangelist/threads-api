@@ -1,0 +1,15 @@
+meta {
+  name: Get Threads User-s Profile Information
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/me
+  body: none
+  auth: none
+}
+
+params:query {
+  ~fields: 
+}

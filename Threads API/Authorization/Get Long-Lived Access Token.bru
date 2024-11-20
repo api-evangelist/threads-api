@@ -1,0 +1,16 @@
+meta {
+  name: Get Long-Lived Access Token
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/access_token
+  body: none
+  auth: none
+}
+
+params:query {
+  ~grant_type: 
+  ~client_secret: 
+}

@@ -1,0 +1,16 @@
+meta {
+  name: Get a List of All a User-s Threads
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/me/threads
+  body: none
+  auth: none
+}
+
+params:query {
+  ~fields: 
+  ~limit: 
+}

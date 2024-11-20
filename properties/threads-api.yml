@@ -270,7 +270,7 @@ paths:
             REPOST_FACADE.
 
 
-            media_url: The posts media URL.
+            media_url: The posts media URL.
 
 
             permalink: Permanent link to the post. Will be omitted if the media
@@ -476,7 +476,7 @@ paths:
             REPOST_FACADE.
 
 
-            media_url: The posts media URL.
+            media_url: The posts media URL.
 
 
             permalink: Permanent link to the post. Will be omitted if the media
@@ -817,7 +817,7 @@ paths:
             Values: TEXT_POST, IMAGE, VIDEO, CAROUSEL_ALBUM
 
 
-            media_url: The posts media URL. This only shows for image, video,
+            media_url: The posts media URL. This only shows for image, video,
             and carousel replies.
 
 
@@ -945,7 +945,7 @@ paths:
             IMAGE, VIDEO, CAROUSEL_ALBUM
 
 
-            media_url: The posts media URL. This only shows for image, video,
+            media_url: The posts media URL. This only shows for image, video,
             and carousel replies.
 
 
@@ -1087,7 +1087,7 @@ paths:
             REPOST_FACADE.
 
 
-            media_url: The posts media URL.
+            media_url: The posts media URL.
 
 
             permalink: Permanent link to the post. Will be omitted if the media
@@ -1171,17 +1171,17 @@ paths:
           schema:
             type: string
           description: >
-            EXPIRED  The container was not published within 24 hours and has
+            EXPIRED  The container was not published within 24 hours and has
             expired.
 
-            ERROR  The container failed to complete the publishing process.
+            ERROR  The container failed to complete the publishing process.
 
-            FINISHED  The container and its media object are ready to be
+            FINISHED  The container and its media object are ready to be
             published.
 
-            IN_PROGRESS  The container is still in the publishing process.
+            IN_PROGRESS  The container is still in the publishing process.
 
-            PUBLISHED  The container's media object has been published.
+            PUBLISHED  The container's media object has been published.
           example: '{{fields_container}}'
         - name: container_id
           in: path

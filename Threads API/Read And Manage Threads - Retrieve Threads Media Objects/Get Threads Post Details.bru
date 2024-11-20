@@ -1,0 +1,19 @@
+meta {
+  name: Get Threads Post Details
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/:thread_id
+  body: none
+  auth: none
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  thread_id: 
+}

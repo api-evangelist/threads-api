@@ -1,0 +1,19 @@
+meta {
+  name: Hide Replies
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/:reply_thread_id/manage_reply
+  body: none
+  auth: none
+}
+
+params:query {
+  ~hide: 
+}
+
+params:path {
+  reply_thread_id: 
+}

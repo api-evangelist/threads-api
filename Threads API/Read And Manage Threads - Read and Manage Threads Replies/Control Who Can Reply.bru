@@ -1,0 +1,17 @@
+meta {
+  name: Control Who Can Reply
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/me/threads
+  body: none
+  auth: none
+}
+
+params:query {
+  ~media_type: 
+  ~text: 
+  ~reply_control: 
+}

@@ -1,0 +1,19 @@
+meta {
+  name: Check Container-s Publishing Status
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/:container_id/
+  body: none
+  auth: none
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  container_id: 
+}

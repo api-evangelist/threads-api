@@ -1,0 +1,20 @@
+meta {
+  name: Get Threads Conversations
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/:thread_id/conversation
+  body: none
+  auth: none
+}
+
+params:query {
+  ~fields: 
+  ~reverse: 
+}
+
+params:path {
+  thread_id: 
+}
