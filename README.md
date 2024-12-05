@@ -1,9 +1,13 @@
 # Threads (threads-api)
 Threads is an app from Instagram where you can view and share public conversations. Depending on how you use Threads, you can also post threads, reply to others and follow profiles you're interested in. Threads and replies can include short pieces of text, links, photos, videos or any combination of them.
 
-**Type:** Contract 
-**Position:** Consuming 
-**Access:** 3rd-Party 
+**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-search/threads-api/refs/heads/main/apis.yml)
+
+## Scope
+
+- **Type:** Contract 
+- **Position:** Consuming 
+- **Access:** 3rd-Party 
 
 ## Tags
 
@@ -13,8 +17,6 @@ Threads is an app from Instagram where you can view and share public conversatio
 
 - **Created:** 2024-11-16 
 - **Modified:** 2024-12-04 
-
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-search/threads-api/refs/heads/main/apis.yml)
 
 ## APIs
 
