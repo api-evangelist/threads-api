@@ -1,8 +1,46 @@
-# Threads API
-This is a repo for managing the [APIs.io](https://apis.io) listing for [Threads API](https://developers.facebook.com/docs/threads/). It contains the following artifacts:
+# Threads (threads-api)
+Threads is an app from Instagram where you can view and share public conversations. Depending on how you use Threads, you can also post threads, reply to others and follow profiles you're interested in. Threads and replies can include short pieces of text, links, photos, videos or any combination of them.
 
-- [**APIs.json**](apis.yml) - The index for all business and technical details of the API.
-- [**OpenAPI**](properties/threads-api.yml) - The technical details of the API.
-- [**Bruno Collection**](Threads%20API/bruno.json) - An executable [Bruno collection](https://bit.ly/4fpe6FO) for the API.
+**Type:** Contract 
+**Position:** Consuming 
+**Access:** 3rd-Party 
 
-If you have any questions about this API please submit an issue or email kin@apievangelist.com.
+## Tags
+
+- Social Networks
+
+**Created:** 2024-11-16 
+**Modified:** 2024-12-04 
+**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-search/threads-api/refs/heads/main/apis.yml)
+
+## APIs
+
+### Threads API
+The Threads API enables developers to build their own unique integrations, and helps creators and brands manage their Threads presence at scale and easily share inspiring content with their communities.
+
+**Human URL:** [https://developers.facebook.com/docs/threads/](https://developers.facebook.com/docs/threads/)
+
+#### Tags
+
+- Social Networks
+
+#### Properties
+
+- [Documentation](https://developers.facebook.com/docs/threads/)
+- [OpenAPI](properties/threads-api.yml)
+- [PostmanCollection](https://www.postman.com/meta/threads/collection/dht3nzz/threads-api?action=share&creator=35240)
+
+## Common Properties
+
+- [GettingStarted](https://developers.facebook.com/docs/threads/get-started)
+- [Authentication](https://developers.facebook.com/docs/threads/get-started/get-access-tokens-and-permissions)
+- [ChangeLog](https://developers.facebook.com/docs/threads/changelog)
+- [Webhooks](https://developers.facebook.com/docs/threads/webhooks)
+- [PostmanWorkspace](https://www.postman.com/meta/threads/overview)
+
+## Maintainers
+
+**FN:** Kin Lane
+
+**Email:** info@apievangelist.com
+
