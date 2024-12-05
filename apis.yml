@@ -19,15 +19,32 @@ apis:
       The Threads API enables developers to build their own unique integrations,
       and helps creators and brands manage their Threads presence at scale and
       easily share inspiring content with their communities.
-name: Threads API
+name: Threads
 tags:
   - Social Networks
-type: Index
+type: Contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
+common:
+  - url: https://developers.facebook.com/docs/threads/get-started
+    name: Get Started - Threads API
+    type: GettingStarted
+  - url: >-
+      https://developers.facebook.com/docs/threads/get-started/get-access-tokens-and-permissions
+    name: Get Access Tokens and Permissions - Threads API
+    type: Authentication
+  - url: https://developers.facebook.com/docs/threads/changelog
+    name: Changelog - Threads API
+    type: ChangeLog
+  - url: https://developers.facebook.com/docs/threads/webhooks
+    name: Webhooks - Threads API
+    type: Webhooks
+  - url: https://www.postman.com/meta/threads/overview
+    name: Postman Workspace
+    type: PostmanWorkspace
 created: '2024-11-16'
-modified: '2024-11-16'
-position: Consumer
+modified: '2024-12-04'
+position: Consuming
 description: >-
   Threads is an app from Instagram where you can view and share public
   conversations. Depending on how you use Threads, you can also post threads,
@@ -38,20 +55,3 @@ maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
 specificationVersion: '0.19'
-common:
-  - name: Get Started - Threads API
-    url: https://developers.facebook.com/docs/threads/get-started
-    type: GettingStarted
-  - name: Get Access Tokens and Permissions - Threads API
-    url: >-
-      https://developers.facebook.com/docs/threads/get-started/get-access-tokens-and-permissions
-    type: Authentication
-  - name: Changelog - Threads API
-    url: https://developers.facebook.com/docs/threads/changelog
-    type: ChangeLog
-  - name: Webhooks - Threads API
-    url: https://developers.facebook.com/docs/threads/webhooks
-    type: Webhooks
-  - name: Postman Workspace
-    url: https://www.postman.com/meta/threads/overview
-    type: PostmanWorkspace
