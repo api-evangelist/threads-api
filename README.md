@@ -32,7 +32,7 @@ The Threads API enables developers to build their own unique integrations, and h
 #### Properties
 
 - [Documentation](https://developers.facebook.com/docs/threads/)
-- [OpenAPI](properties/threads-api.yml)
+- [OpenAPI](properties/threads-api-openapi.yml)
 - [PostmanCollection](https://www.postman.com/meta/threads/collection/dht3nzz/threads-api?action=share&creator=35240)
 
 ## Common Properties
