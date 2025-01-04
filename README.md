@@ -1,5 +1,5 @@
 # Threads (threads-api)
-Threads is an app from Instagram where you can view and share public conversations. Depending on how you use Threads, you can also post threads, reply to others and follow profiles you're interested in. Threads and replies can include short pieces of text, links, photos, videos or any combination of them.
+Threads is a social media platform that allows users to create and participate in discussions about various topics. Users can post comments, photos, and videos, as well as engage in conversations with other users through direct messaging. Threads also offers features such as group chats, polls, and events to help users connect with like-minded individuals and share their thoughts and opinions on a wide range of subjects. With a user-friendly interface and a diverse community, Threads is a place where people can come together to share ideas, ask questions, and learn from one another.
 
 **URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-search/threads-api/refs/heads/main/apis.yml)
 
@@ -9,9 +9,9 @@ Threads is an app from Instagram where you can view and share public conversatio
 - **Position:** Consuming 
 - **Access:** 3rd-Party 
 
-## Tags
+## Tags:
 
-- Social Networks
+ - Social Networks
 
 ## Timestamps
 
@@ -25,14 +25,15 @@ The Threads API enables developers to build their own unique integrations, and h
 
 **Human URL:** [https://developers.facebook.com/docs/threads/](https://developers.facebook.com/docs/threads/)
 
-#### Tags
 
-- Social Networks
+#### Tags:
+
+ - Social Networks
 
 #### Properties
 
 - [Documentation](https://developers.facebook.com/docs/threads/)
-- [OpenAPI](properties/threads-api-openapi.yml)
+- [OpenAPI](openapi/threads-api-openapi.yml)
 - [PostmanCollection](https://www.postman.com/meta/threads/collection/dht3nzz/threads-api?action=share&creator=35240)
 
 ## Common Properties
