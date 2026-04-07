@@ -47,16 +47,12 @@ created: '2024-11-16'
 modified: '2026-03-16'
 position: Consuming
 description: >-
-  Threads is a social media platform specifically designed for close friends to
-  share their thoughts, photos, and updates in a more intimate and private
-  setting. Users can create group chats, share Stories, and send disappearing
-  messages to keep their interactions personal and secure. With customizable
-  privacy settings and the ability to categorize friends into different groups,
-  Threads allows users to control who sees their content. Users can also easily
-  access their Instagram close friends list from within the app, making it easy
-  to stay connected with their inner circle. Threads provides a seamless and
-  convenient way for friends to stay in touch and share moments with each other
-  in a safe and private environment.
+  Threads is a social media platform specifically designed for close friends to share
+  their thoughts, photos, and updates in a more intimate and private setting. Users
+  can create group chats, share Stories, and send disappearing messages to keep their
+  interactions personal and secure. With customizable privacy settings and the ability
+  to categorize friends into different groups, Threads allows users to control who
+  sees their content.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
