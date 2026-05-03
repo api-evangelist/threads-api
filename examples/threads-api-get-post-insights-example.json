@@ -1,0 +1,79 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://graph.threads.net/1234567890123456/insights",
+    "headers": {
+      "Authorization": "Bearer YOUR_ACCESS_TOKEN"
+    },
+    "parameters": {
+      "metric": "views,likes,replies,reposts,quotes"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": [
+        {
+          "name": "views",
+          "period": "lifetime",
+          "values": [
+            {
+              "value": 4523
+            }
+          ],
+          "title": "Views",
+          "description": "The number of times your post was viewed.",
+          "id": "1234567890123456/insights/views/lifetime"
+        },
+        {
+          "name": "likes",
+          "period": "lifetime",
+          "values": [
+            {
+              "value": 187
+            }
+          ],
+          "title": "Likes",
+          "description": "The number of likes on your post.",
+          "id": "1234567890123456/insights/likes/lifetime"
+        },
+        {
+          "name": "replies",
+          "period": "lifetime",
+          "values": [
+            {
+              "value": 42
+            }
+          ],
+          "title": "Replies",
+          "description": "The number of replies on your post.",
+          "id": "1234567890123456/insights/thread_replies/lifetime"
+        },
+        {
+          "name": "reposts",
+          "period": "lifetime",
+          "values": [
+            {
+              "value": 23
+            }
+          ],
+          "title": "Reposts",
+          "description": "The number of times your post was reposted.",
+          "id": "1234567890123456/insights/reposts/lifetime"
+        },
+        {
+          "name": "quotes",
+          "period": "lifetime",
+          "values": [
+            {
+              "value": 8
+            }
+          ],
+          "title": "Quotes",
+          "description": "The number of times your post was quoted.",
+          "id": "1234567890123456/insights/quotes/lifetime"
+        }
+      ]
+    }
+  }
+}

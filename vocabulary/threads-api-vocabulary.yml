@@ -1,0 +1,156 @@
+name: Threads API Vocabulary
+description: >-
+  Domain vocabulary for the Meta Threads API covering publishing workflows,
+  content types, reply management, insights, and OAuth authentication.
+version: '1.0'
+created: '2026-05-03'
+modified: '2026-05-03'
+tags:
+  - Social Networks
+  - Publishing
+  - Media
+
+terms:
+  - term: Thread
+    definition: >-
+      A post on the Threads platform. Threads can be text, image, video,
+      carousel, or audio. Each thread has a unique media ID and permalink.
+    related:
+      - Media Container
+      - Reply
+      - Repost
+    tags:
+      - Social
+      - Content
+
+  - term: Media Container
+    definition: >-
+      An intermediate object created when preparing content for publishing.
+      Contains the media and settings for a post. Must be published via
+      the /threads_publish endpoint within 24 hours.
+    related:
+      - Thread
+      - Publishing
+    tags:
+      - Publishing
+      - Content
+
+  - term: Media Type
+    definition: >-
+      The type of content in a Threads post. Values include TEXT_POST,
+      IMAGE, VIDEO, CAROUSEL_ALBUM, AUDIO, and REPOST_FACADE.
+    related:
+      - Thread
+      - Media Container
+    tags:
+      - Content
+      - Media
+
+  - term: Reply Control
+    definition: >-
+      A setting on a Threads post controlling who can reply.
+      Values include everyone, accounts_you_follow, and mentioned_only.
+    related:
+      - Thread
+      - Reply
+    tags:
+      - Publishing
+      - Moderation
+
+  - term: Quote Post
+    definition: >-
+      A Threads post that embeds and comments on another user's post.
+      Identified by the is_quote_post field being true.
+    related:
+      - Thread
+    tags:
+      - Content
+      - Social
+
+  - term: Repost
+    definition: >-
+      Resharing another user's original Threads post to one's own followers.
+      Represented with media_type REPOST_FACADE.
+    related:
+      - Thread
+    tags:
+      - Content
+      - Social
+
+  - term: Carousel
+    definition: >-
+      A Threads post containing multiple images or videos in a scrollable
+      format. Each item is an Item Container, and all are grouped in a
+      Carousel Container before publishing.
+    related:
+      - Thread
+      - Media Container
+    tags:
+      - Content
+      - Media
+
+  - term: Insight
+    definition: >-
+      An analytics metric for a post or account. Post insights include views,
+      likes, replies, reposts, and quotes. Account insights additionally include
+      followers_count and follower_demographics.
+    related:
+      - Analytics
+      - Thread
+    tags:
+      - Analytics
+      - Insights
+
+  - term: Publishing Quota
+    definition: >-
+      Rate limits on Threads API publishing. Default limits are 250 posts
+      per 24 hours and 1,000 replies per 24 hours per user.
+    related:
+      - Rate Limit
+      - Publishing
+    tags:
+      - API
+      - Rate Limiting
+
+  - term: Access Token
+    definition: >-
+      An OAuth 2.0 user access token required for all Threads API calls.
+      Short-lived tokens expire in 1 hour; long-lived tokens expire in 60 days.
+    related:
+      - OAuth
+      - Authentication
+    tags:
+      - Authentication
+      - OAuth
+
+  - term: threads_basic
+    definition: >-
+      OAuth scope that grants read access to the user's Threads profile and media.
+      Required for all Threads API access.
+    related:
+      - OAuth
+      - Scope
+    tags:
+      - Authentication
+      - OAuth
+
+  - term: threads_content_publish
+    definition: >-
+      OAuth scope granting permission to publish posts on behalf of the user.
+    related:
+      - OAuth
+      - Publishing
+    tags:
+      - Authentication
+      - Publishing
+
+  - term: Hushing
+    definition: >-
+      The Threads moderation feature allowing a post owner to hide top-level
+      replies. A hidden reply has hide_status of HIDDEN.
+    related:
+      - Reply
+      - Moderation
+    tags:
+      - Moderation
+      - Replies

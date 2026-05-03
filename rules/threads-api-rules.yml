@@ -1,0 +1,66 @@
+extends: spectral:oas
+rules:
+  # Threads API (Meta) specific Spectral rules
+
+  threads-api-operation-summary-title-case:
+    description: All operation summaries must use Title Case.
+    message: "Operation summary '{{value}}' should use Title Case."
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^([A-Z][a-z0-9]*([ -][A-Z0-9][a-z0-9]*)*)$"
+
+  threads-api-oauth2-required:
+    description: Operations must use OAuth2 security scheme.
+    message: "Threads API operations require OAuth2 authentication."
+    severity: error
+    given: "$.components.securitySchemes"
+    then:
+      field: oauth2Auth
+      function: truthy
+
+  threads-api-tag-defined:
+    description: All operations must have at least one tag.
+    message: "Operations must have at least one tag for categorization."
+    severity: error
+    given: "$.paths[*][get,post,put,delete]"
+    then:
+      field: tags
+      function: truthy
+
+  threads-api-me-prefix-paths:
+    description: User-specific endpoints should use /me prefix pattern.
+    message: "User-specific Threads endpoints should use /me/ path prefix."
+    severity: info
+    given: "$.paths"
+    then:
+      function: truthy
+
+  threads-api-fields-query-param:
+    description: GET operations retrieving media objects should support fields parameter.
+    message: "Threads API GET operations should support fields query parameter for selective field retrieval."
+    severity: warn
+    given: "$.paths[*][get].parameters[*]"
+    then:
+      function: truthy
+
+  threads-api-response-defined:
+    description: All operations must define at least one response.
+    message: "Operations must define response schemas."
+    severity: error
+    given: "$.paths[*][*]"
+    then:
+      field: responses
+      function: truthy
+
+  threads-api-operation-id-camel-case:
+    description: Operation IDs should use camelCase.
+    message: "Operation ID '{{value}}' should use camelCase."
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"

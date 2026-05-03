@@ -1,0 +1,32 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "threads": "https://developers.facebook.com/docs/threads/vocab#",
+    "Thread": "SocialMediaPosting",
+    "UserProfile": "Person",
+    "MediaObject": "MediaObject",
+    "Insight": "threads:AnalyticsMetric",
+    "text": "text",
+    "username": "identifier",
+    "permalink": "url",
+    "timestamp": "datePublished",
+    "media_type": "encodingFormat",
+    "media_url": "contentUrl",
+    "thumbnail_url": "thumbnailUrl",
+    "is_quote_post": "threads:isQuotePost",
+    "has_replies": "threads:hasReplies",
+    "is_reply": "threads:isReply",
+    "reply_control": "threads:replyControl",
+    "hide_status": "threads:hideStatus",
+    "root_post": "threads:rootPost",
+    "replied_to": "threads:repliedTo",
+    "views": "threads:viewCount",
+    "likes": "interactionCount",
+    "replies": "threads:replyCount",
+    "reposts": "threads:repostCount",
+    "quotes": "threads:quoteCount",
+    "followers_count": "threads:followerCount",
+    "access_token": "threads:accessToken",
+    "expires_in": "threads:tokenExpiresIn"
+  }
+}

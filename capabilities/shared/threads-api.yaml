@@ -1,0 +1,297 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Threads API"
+  description: >-
+    Meta Threads API for publishing posts, managing replies, reading insights,
+    and managing user profiles on the Threads social media platform.
+  tags:
+    - Social Networks
+    - Publishing
+    - Media
+    - Insights
+    - Meta
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      THREADS_ACCESS_TOKEN: THREADS_ACCESS_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: threads
+      baseUri: https://graph.threads.net
+      description: "Meta Threads API"
+      authentication:
+        type: bearer
+        token: "{{THREADS_ACCESS_TOKEN}}"
+      resources:
+        - name: authorization
+          path: /oauth
+          description: OAuth authorization endpoints
+          operations:
+            - name: exchange-code-for-token
+              method: POST
+              description: Exchange authorization code for short-lived access token
+              inputParameters:
+                - name: client_id
+                  in: query
+                  type: string
+                  required: true
+                  description: Threads App ID
+                - name: client_secret
+                  in: query
+                  type: string
+                  required: true
+                  description: Threads App secret
+                - name: code
+                  in: query
+                  type: string
+                  required: true
+                  description: Authorization code
+                - name: grant_type
+                  in: query
+                  type: string
+                  required: true
+                  description: Must be authorization_code
+                - name: redirect_uri
+                  in: query
+                  type: string
+                  required: true
+                  description: Redirect URI
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-long-lived-access-token
+              method: GET
+              description: Exchange short-lived token for long-lived access token
+              inputParameters:
+                - name: grant_type
+                  in: query
+                  type: string
+                  required: true
+                  description: Must be th_exchange_token
+                - name: client_secret
+                  in: query
+                  type: string
+                  required: true
+                  description: App secret
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: profile
+          path: /me
+          description: User profile operations
+          operations:
+            - name: get-profile
+              method: GET
+              description: Get Threads user profile information
+              inputParameters:
+                - name: fields
+                  in: query
+                  type: string
+                  required: false
+                  description: Comma-separated list of fields
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: threads
+          path: /me/threads
+          description: User thread posts
+          operations:
+            - name: list-threads
+              method: GET
+              description: Get paginated list of all user threads
+              inputParameters:
+                - name: fields
+                  in: query
+                  type: string
+                  required: false
+                  description: Comma-separated list of fields to return
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: Maximum number of results
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: control-who-can-reply
+              method: POST
+              description: Create a post with reply control settings
+              inputParameters:
+                - name: media_type
+                  in: query
+                  type: string
+                  required: true
+                  description: Media type of the post
+                - name: text
+                  in: query
+                  type: string
+                  required: false
+                  description: Post text
+                - name: reply_control
+                  in: query
+                  type: string
+                  required: false
+                  description: Who can reply (everyone, accounts_you_follow, mentioned_only)
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: publish
+          path: /me/threads_publish
+          description: Publish thread posts
+          operations:
+            - name: publish-thread
+              method: POST
+              description: Publish a Threads media container
+              inputParameters:
+                - name: creation_id
+                  in: query
+                  type: string
+                  required: true
+                  description: Container ID to publish
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: insights
+          path: /me/threads_insights
+          description: Account-level insights
+          operations:
+            - name: get-account-insights
+              method: GET
+              description: Get account-level insights and analytics
+              inputParameters:
+                - name: metric
+                  in: query
+                  type: string
+                  required: true
+                  description: Metrics to retrieve
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: replies
+          path: /me/replies
+          description: User replies
+          operations:
+            - name: list-replies
+              method: GET
+              description: Get paginated list of user's replies
+              inputParameters:
+                - name: fields
+                  in: query
+                  type: string
+                  required: false
+                  description: Fields to return
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: publishing-limit
+          path: /me/threads_publishing_limit
+          description: Publishing quota
+          operations:
+            - name: get-publishing-limit
+              method: GET
+              description: Check user publishing quota limit
+              inputParameters:
+                - name: fields
+                  in: query
+                  type: string
+                  required: false
+                  description: Fields to return
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: threads-rest
+      resources:
+        - path: /v1/profile
+          name: profile
+          description: User profile
+          operations:
+            - method: GET
+              name: get-profile
+              description: Get user profile
+              call: "threads.get-profile"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/threads
+          name: threads
+          description: Thread posts
+          operations:
+            - method: GET
+              name: list-threads
+              description: List user threads
+              call: "threads.list-threads"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/insights
+          name: insights
+          description: Account insights
+          operations:
+            - method: GET
+              name: get-account-insights
+              description: Get account insights
+              call: "threads.get-account-insights"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: threads-mcp
+      transport: http
+      tools:
+        - name: get-profile
+          description: Get Threads user profile information
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "threads.get-profile"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-threads
+          description: Get list of user's Threads posts
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "threads.list-threads"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-account-insights
+          description: Get account-level analytics and insights
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "threads.get-account-insights"
+          outputParameters:
+            - type: object
+              mapping: "$."

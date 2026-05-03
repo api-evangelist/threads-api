@@ -1,0 +1,60 @@
+{
+  "title": "Threads API Thread Structure",
+  "description": "Structure documentation for Meta Threads API media objects and insights.",
+  "version": "1.0",
+  "structures": {
+    "Thread": {
+      "description": "A Threads post (media object) published on the platform.",
+      "fields": {
+        "id": { "type": "string", "required": true, "description": "Unique media object identifier" },
+        "media_product_type": { "type": "string", "required": false, "description": "Always THREADS" },
+        "media_type": { "type": "string", "required": true, "description": "TEXT_POST | IMAGE | VIDEO | CAROUSEL_ALBUM | AUDIO | REPOST_FACADE" },
+        "permalink": { "type": "string", "required": false, "description": "Permanent URL to the post" },
+        "owner": { "type": "object", "required": false, "description": "Creator user object with id field" },
+        "username": { "type": "string", "required": false, "description": "Creator username" },
+        "text": { "type": "string", "required": false, "description": "Post text content" },
+        "timestamp": { "type": "string", "required": false, "description": "ISO 8601 publication timestamp" },
+        "shortcode": { "type": "string", "required": false, "description": "Media shortcode" },
+        "media_url": { "type": "string", "required": false, "description": "Media file URL" },
+        "thumbnail_url": { "type": "string", "required": false, "description": "Video thumbnail URL" },
+        "is_quote_post": { "type": "boolean", "required": false, "description": "Whether post quotes another" },
+        "has_replies": { "type": "boolean", "required": false, "description": "Whether post has replies" },
+        "is_reply": { "type": "boolean", "required": false, "description": "Whether this is a reply" },
+        "hide_status": { "type": "string", "required": false, "description": "NOT_HUSHED | UNHUSHED | HIDDEN" },
+        "root_post": { "type": "object", "required": false, "description": "Top-level post reference for replies" },
+        "replied_to": { "type": "object", "required": false, "description": "Immediate parent post reference" }
+      }
+    },
+    "Insight": {
+      "description": "Analytics metric for a post or account.",
+      "fields": {
+        "name": { "type": "string", "required": true, "description": "Metric name (views, likes, replies, etc.)" },
+        "period": { "type": "string", "required": true, "description": "Measurement period (lifetime, day)" },
+        "values": { "type": "array", "required": true, "description": "Array of metric value objects" },
+        "title": { "type": "string", "required": false, "description": "Human-readable metric title" },
+        "description": { "type": "string", "required": false, "description": "Metric description" },
+        "id": { "type": "string", "required": false, "description": "Insight object identifier" }
+      }
+    },
+    "PaginatedResponse": {
+      "description": "Standard paginated list response with cursor-based pagination.",
+      "fields": {
+        "data": { "type": "array", "required": true, "description": "Array of result objects" },
+        "paging": {
+          "type": "object",
+          "required": false,
+          "description": "Pagination cursors",
+          "fields": {
+            "cursors": {
+              "type": "object",
+              "fields": {
+                "before": { "type": "string", "description": "Cursor to previous page" },
+                "after": { "type": "string", "description": "Cursor to next page" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

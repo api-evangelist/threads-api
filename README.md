@@ -1,52 +1,87 @@
-# Threads (threads-api)
-Threads is a social media platform that allows users to create and participate in discussions about various topics. Users can post comments, photos, and videos, as well as engage in conversations with other users through direct messaging. Threads also offers features such as group chats, polls, and events to help users connect with like-minded individuals and share their thoughts and opinions on a wide range of subjects. With a user-friendly interface and a diverse community, Threads is a place where people can come together to share ideas, ask questions, and learn from one another.
+# Threads API
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-search/threads-api/refs/heads/main/apis.yml)
+The Meta Threads API enables developers to build integrations for the Threads social media platform. It supports publishing text, image, video, carousel, and quote posts, reading and managing replies, accessing profile information, retrieving media insights, and managing account settings.
 
-## Scope
-
-- **Type:** Contract 
-- **Position:** Consuming 
-- **Access:** 3rd-Party 
-
-## Tags:
-
- - Social Networks
-
-## Timestamps
-
-- **Created:** 2024-11-16 
-- **Modified:** 2024-12-04 
+**Developer Documentation:** [https://developers.facebook.com/docs/threads/](https://developers.facebook.com/docs/threads/)
 
 ## APIs
 
-### Threads API
-The Threads API enables developers to build their own unique integrations, and helps creators and brands manage their Threads presence at scale and easily share inspiring content with their communities.
+| Name | Description | Documentation |
+|------|-------------|---------------|
+| [Threads API](https://developers.facebook.com/docs/threads/) | Publish posts, manage replies, read insights, and access profiles on the Threads platform. | [Docs](https://developers.facebook.com/docs/threads/) |
 
-**Human URL:** [https://developers.facebook.com/docs/threads/](https://developers.facebook.com/docs/threads/)
+## Common Resources
 
+- **Getting Started:** [https://developers.facebook.com/docs/threads/get-started](https://developers.facebook.com/docs/threads/get-started)
+- **Authentication:** [OAuth 2.0 Access Tokens](https://developers.facebook.com/docs/threads/get-started/get-access-tokens-and-permissions)
+- **Changelog:** [https://developers.facebook.com/docs/threads/changelog](https://developers.facebook.com/docs/threads/changelog)
+- **Webhooks:** [https://developers.facebook.com/docs/threads/webhooks](https://developers.facebook.com/docs/threads/webhooks)
+- **Postman Workspace:** [https://www.postman.com/meta/threads/overview](https://www.postman.com/meta/threads/overview)
 
-#### Tags:
+## OpenAPI Specifications
 
- - Social Networks
+| File | Description |
+|------|-------------|
+| [threads-api-openapi.yml](openapi/threads-api-openapi.yml) | Threads API - authorization, publishing, profiles, insights, replies |
 
-#### Properties
+## JSON Schemas
 
-- [Documentation](https://developers.facebook.com/docs/threads/)
-- [OpenAPI](openapi/threads-api-openapi.yml)
-- [PostmanCollection](https://www.postman.com/meta/threads/collection/dht3nzz/threads-api?action=share&creator=35240)
+| File | Description |
+|------|-------------|
+| [threads-api-thread-schema.json](json-schema/threads-api-thread-schema.json) | Thread media object schema |
 
-## Common Properties
+## JSON Structures
 
-- [GettingStarted](https://developers.facebook.com/docs/threads/get-started)
-- [Authentication](https://developers.facebook.com/docs/threads/get-started/get-access-tokens-and-permissions)
-- [ChangeLog](https://developers.facebook.com/docs/threads/changelog)
-- [Webhooks](https://developers.facebook.com/docs/threads/webhooks)
-- [PostmanWorkspace](https://www.postman.com/meta/threads/overview)
+| File | Description |
+|------|-------------|
+| [threads-api-thread-structure.json](json-structure/threads-api-thread-structure.json) | Thread, insight, and pagination structure documentation |
+
+## JSON-LD
+
+| File | Description |
+|------|-------------|
+| [threads-api-context.jsonld](json-ld/threads-api-context.jsonld) | JSON-LD context mapping Threads vocabulary to schema.org |
+
+## Examples
+
+| File | Description |
+|------|-------------|
+| [threads-api-get-list-threads-example.json](examples/threads-api-get-list-threads-example.json) | List user threads request/response |
+| [threads-api-get-post-insights-example.json](examples/threads-api-get-post-insights-example.json) | Get post insights request/response |
+
+## Spectral Rules
+
+| File | Description |
+|------|-------------|
+| [threads-api-rules.yml](rules/threads-api-rules.yml) | Spectral ruleset enforcing Threads API conventions |
+
+## Naftiko Capabilities
+
+### Shared Definitions
+
+| File | Description |
+|------|-------------|
+| [capabilities/shared/threads-api.yaml](capabilities/shared/threads-api.yaml) | Per-API consumed definition for the Threads API |
+
+### Workflow Capabilities
+
+| File | Description | Tools |
+|------|-------------|-------|
+| [capabilities/social-publishing.yaml](capabilities/social-publishing.yaml) | Social publishing, analytics, and reply management for Threads | 7 tools |
+
+## Vocabulary
+
+| File | Description |
+|------|-------------|
+| [threads-api-vocabulary.yml](vocabulary/threads-api-vocabulary.yml) | Domain vocabulary for Threads API concepts |
 
 ## Maintainers
 
 **FN:** Kin Lane
 
-**Email:** info@apievangelist.com
+**Email:** kin@apievangelist.com
+
+---
+
+*Profiled by [API Evangelist](https://apievangelist.com) on 2026-05-03*
 

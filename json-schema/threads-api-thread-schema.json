@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://graph.threads.net/schemas/thread",
+  "title": "Thread",
+  "description": "A Threads post (media object) on the Meta Threads platform.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique media object identifier."
+    },
+    "media_product_type": {
+      "type": "string",
+      "const": "THREADS",
+      "description": "Platform surface where the media is published. Always THREADS."
+    },
+    "media_type": {
+      "type": "string",
+      "enum": ["TEXT_POST", "IMAGE", "VIDEO", "CAROUSEL_ALBUM", "AUDIO", "REPOST_FACADE"],
+      "description": "Type of media in the post."
+    },
+    "permalink": {
+      "type": "string",
+      "format": "uri",
+      "description": "Permanent URL link to the post. May be omitted if copyrighted material."
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Instagram user ID who created the post."
+        }
+      }
+    },
+    "username": {
+      "type": "string",
+      "description": "Instagram username who created the post."
+    },
+    "text": {
+      "type": "string",
+      "description": "Text content of the Threads post."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Publication date in ISO 8601 format."
+    },
+    "shortcode": {
+      "type": "string",
+      "description": "Shortcode identifier for the media."
+    },
+    "thumbnail_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Thumbnail URL for video posts."
+    },
+    "media_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Media URL for image or video posts."
+    },
+    "is_quote_post": {
+      "type": "boolean",
+      "description": "Whether this post is a quote of another user's post."
+    },
+    "has_replies": {
+      "type": "boolean",
+      "description": "Whether the post has any replies."
+    },
+    "is_reply": {
+      "type": "boolean",
+      "description": "Whether this media is a reply rather than a top-level post."
+    },
+    "hide_status": {
+      "type": "string",
+      "enum": ["NOT_HUSHED", "UNHUSHED", "HIDDEN"],
+      "description": "Hide status of a reply post."
+    },
+    "root_post": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Media ID of the top-level post in the reply tree."
+        }
+      },
+      "description": "Root post reference for replies."
+    },
+    "replied_to": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Media ID of the immediate parent of this reply."
+        }
+      },
+      "description": "Parent post reference for replies."
+    }
+  },
+  "required": ["id", "media_type"],
+  "additionalProperties": true
+}

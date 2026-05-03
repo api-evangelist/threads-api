@@ -1,0 +1,46 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://graph.threads.net/me/threads",
+    "headers": {
+      "Authorization": "Bearer YOUR_ACCESS_TOKEN"
+    },
+    "parameters": {
+      "fields": "id,media_product_type,media_type,permalink,username,text,timestamp,is_quote_post",
+      "limit": 10
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": [
+        {
+          "id": "1234567890123456",
+          "media_product_type": "THREADS",
+          "media_type": "TEXT_POST",
+          "permalink": "https://www.threads.net/@username/post/abc123def456",
+          "username": "username",
+          "text": "This is a sample Threads post.",
+          "timestamp": "2026-04-15T14:30:00+0000",
+          "is_quote_post": false
+        },
+        {
+          "id": "9876543210987654",
+          "media_product_type": "THREADS",
+          "media_type": "IMAGE",
+          "permalink": "https://www.threads.net/@username/post/xyz789uvw012",
+          "username": "username",
+          "text": "Check out this image!",
+          "timestamp": "2026-04-14T09:15:00+0000",
+          "is_quote_post": false
+        }
+      ],
+      "paging": {
+        "cursors": {
+          "before": "cursor_before_value",
+          "after": "cursor_after_value"
+        }
+      }
+    }
+  }
+}
