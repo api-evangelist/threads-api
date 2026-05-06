@@ -1,206 +1,399 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "Threads Social Publishing"
-  description: >-
-    Unified social publishing capability for the Threads platform combining
-    content publishing, reply management, engagement analytics, and account
-    insights. Used by creators, brands, and social media managers to manage
-    Threads presence at scale.
+  label: Threads Social Publishing
+  description: Unified social publishing capability for the Threads platform combining content publishing, reply management,
+    engagement analytics, and account insights. Used by creators, brands, and social media managers to manage Threads presence
+    at scale.
   tags:
-    - Social Networks
-    - Publishing
-    - Analytics
-    - Media
-    - Meta
-    - Content Management
-  created: "2026-05-03"
-  modified: "2026-05-03"
-
+  - Social Networks
+  - Publishing
+  - Analytics
+  - Media
+  - Meta
+  - Content Management
+  created: '2026-05-03'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      THREADS_ACCESS_TOKEN: THREADS_ACCESS_TOKEN
-
+- namespace: env
+  keys:
+    THREADS_ACCESS_TOKEN: THREADS_ACCESS_TOKEN
 capability:
   consumes:
-    - import: threads
-      location: ./shared/threads-api.yaml
-
+  - type: http
+    namespace: threads
+    baseUri: https://graph.threads.net
+    description: Meta Threads API
+    authentication:
+      type: bearer
+      token: '{{THREADS_ACCESS_TOKEN}}'
+    resources:
+    - name: authorization
+      path: /oauth
+      description: OAuth authorization endpoints
+      operations:
+      - name: exchange-code-for-token
+        method: POST
+        description: Exchange authorization code for short-lived access token
+        inputParameters:
+        - name: client_id
+          in: query
+          type: string
+          required: true
+          description: Threads App ID
+        - name: client_secret
+          in: query
+          type: string
+          required: true
+          description: Threads App secret
+        - name: code
+          in: query
+          type: string
+          required: true
+          description: Authorization code
+        - name: grant_type
+          in: query
+          type: string
+          required: true
+          description: Must be authorization_code
+        - name: redirect_uri
+          in: query
+          type: string
+          required: true
+          description: Redirect URI
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-long-lived-access-token
+        method: GET
+        description: Exchange short-lived token for long-lived access token
+        inputParameters:
+        - name: grant_type
+          in: query
+          type: string
+          required: true
+          description: Must be th_exchange_token
+        - name: client_secret
+          in: query
+          type: string
+          required: true
+          description: App secret
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: profile
+      path: /me
+      description: User profile operations
+      operations:
+      - name: get-profile
+        method: GET
+        description: Get Threads user profile information
+        inputParameters:
+        - name: fields
+          in: query
+          type: string
+          required: false
+          description: Comma-separated list of fields
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: threads
+      path: /me/threads
+      description: User thread posts
+      operations:
+      - name: list-threads
+        method: GET
+        description: Get paginated list of all user threads
+        inputParameters:
+        - name: fields
+          in: query
+          type: string
+          required: false
+          description: Comma-separated list of fields to return
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Maximum number of results
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: control-who-can-reply
+        method: POST
+        description: Create a post with reply control settings
+        inputParameters:
+        - name: media_type
+          in: query
+          type: string
+          required: true
+          description: Media type of the post
+        - name: text
+          in: query
+          type: string
+          required: false
+          description: Post text
+        - name: reply_control
+          in: query
+          type: string
+          required: false
+          description: Who can reply (everyone, accounts_you_follow, mentioned_only)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: publish
+      path: /me/threads_publish
+      description: Publish thread posts
+      operations:
+      - name: publish-thread
+        method: POST
+        description: Publish a Threads media container
+        inputParameters:
+        - name: creation_id
+          in: query
+          type: string
+          required: true
+          description: Container ID to publish
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: insights
+      path: /me/threads_insights
+      description: Account-level insights
+      operations:
+      - name: get-account-insights
+        method: GET
+        description: Get account-level insights and analytics
+        inputParameters:
+        - name: metric
+          in: query
+          type: string
+          required: true
+          description: Metrics to retrieve
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: replies
+      path: /me/replies
+      description: User replies
+      operations:
+      - name: list-replies
+        method: GET
+        description: Get paginated list of user's replies
+        inputParameters:
+        - name: fields
+          in: query
+          type: string
+          required: false
+          description: Fields to return
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: publishing-limit
+      path: /me/threads_publishing_limit
+      description: Publishing quota
+      operations:
+      - name: get-publishing-limit
+        method: GET
+        description: Check user publishing quota limit
+        inputParameters:
+        - name: fields
+          in: query
+          type: string
+          required: false
+          description: Fields to return
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8080
-      namespace: social-publishing-api
-      description: "Unified REST API for Threads social publishing and management."
-      resources:
-        - path: /v1/profile
-          name: profile
-          description: User profile information
-          operations:
-            - method: GET
-              name: get-profile
-              description: Get Threads user profile information
-              call: "threads.get-profile"
-              with:
-                fields: "rest.fields"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/threads
-          name: threads
-          description: Thread posts listing
-          operations:
-            - method: GET
-              name: list-threads
-              description: Get all user threads with pagination
-              call: "threads.list-threads"
-              with:
-                fields: "rest.fields"
-                limit: "rest.limit"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: create-thread
-              description: Create a new thread post with reply control
-              call: "threads.control-who-can-reply"
-              with:
-                media_type: "rest.media_type"
-                text: "rest.text"
-                reply_control: "rest.reply_control"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/publish
-          name: publish
-          description: Publish thread containers
-          operations:
-            - method: POST
-              name: publish-thread
-              description: Publish a created thread media container
-              call: "threads.publish-thread"
-              with:
-                creation_id: "rest.creation_id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/insights
-          name: account-insights
-          description: Account-level insights
-          operations:
-            - method: GET
-              name: get-account-insights
-              description: Get account analytics and metrics
-              call: "threads.get-account-insights"
-              with:
-                metric: "rest.metric"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/replies
-          name: replies
-          description: User reply posts
-          operations:
-            - method: GET
-              name: list-replies
-              description: Get all user replies
-              call: "threads.list-replies"
-              with:
-                fields: "rest.fields"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/publishing-limit
-          name: publishing-limit
-          description: Publishing quota
-          operations:
-            - method: GET
-              name: get-publishing-limit
-              description: Check publishing quota and rate limits
-              call: "threads.get-publishing-limit"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9090
-      namespace: social-publishing-mcp
-      transport: http
-      description: "MCP server for AI-assisted Threads content management and analytics."
-      tools:
-        - name: get-profile
-          description: Get Threads user profile information including username and biography
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "threads.get-profile"
-          with:
-            fields: "tools.fields"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-threads
-          description: Get all user's Threads posts with pagination support
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "threads.list-threads"
-          with:
-            fields: "tools.fields"
-            limit: "tools.limit"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: create-thread
-          description: Create a new Threads post with text, image, or video and reply controls
-          hints:
-            readOnly: false
-            destructive: false
-          call: "threads.control-who-can-reply"
-          with:
-            media_type: "tools.media_type"
-            text: "tools.text"
-            reply_control: "tools.reply_control"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: publish-thread
-          description: Publish a created Threads media container
-          hints:
-            readOnly: false
-            destructive: false
-          call: "threads.publish-thread"
-          with:
-            creation_id: "tools.creation_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-account-insights
-          description: Get Threads account analytics including views, likes, replies, and followers
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "threads.get-account-insights"
-          with:
-            metric: "tools.metric"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-replies
-          description: Get all user's reply posts on Threads
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "threads.list-replies"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-publishing-limit
-          description: Check publishing quota and rate limit status
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "threads.get-publishing-limit"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8080
+    namespace: social-publishing-api
+    description: Unified REST API for Threads social publishing and management.
+    resources:
+    - path: /v1/profile
+      name: profile
+      description: User profile information
+      operations:
+      - method: GET
+        name: get-profile
+        description: Get Threads user profile information
+        call: threads.get-profile
+        with:
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/threads
+      name: threads
+      description: Thread posts listing
+      operations:
+      - method: GET
+        name: list-threads
+        description: Get all user threads with pagination
+        call: threads.list-threads
+        with:
+          fields: rest.fields
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: create-thread
+        description: Create a new thread post with reply control
+        call: threads.control-who-can-reply
+        with:
+          media_type: rest.media_type
+          text: rest.text
+          reply_control: rest.reply_control
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/publish
+      name: publish
+      description: Publish thread containers
+      operations:
+      - method: POST
+        name: publish-thread
+        description: Publish a created thread media container
+        call: threads.publish-thread
+        with:
+          creation_id: rest.creation_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights
+      name: account-insights
+      description: Account-level insights
+      operations:
+      - method: GET
+        name: get-account-insights
+        description: Get account analytics and metrics
+        call: threads.get-account-insights
+        with:
+          metric: rest.metric
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/replies
+      name: replies
+      description: User reply posts
+      operations:
+      - method: GET
+        name: list-replies
+        description: Get all user replies
+        call: threads.list-replies
+        with:
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/publishing-limit
+      name: publishing-limit
+      description: Publishing quota
+      operations:
+      - method: GET
+        name: get-publishing-limit
+        description: Check publishing quota and rate limits
+        call: threads.get-publishing-limit
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: social-publishing-mcp
+    transport: http
+    description: MCP server for AI-assisted Threads content management and analytics.
+    tools:
+    - name: get-profile
+      description: Get Threads user profile information including username and biography
+      hints:
+        readOnly: true
+        openWorld: true
+      call: threads.get-profile
+      with:
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-threads
+      description: Get all user's Threads posts with pagination support
+      hints:
+        readOnly: true
+        openWorld: true
+      call: threads.list-threads
+      with:
+        fields: tools.fields
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-thread
+      description: Create a new Threads post with text, image, or video and reply controls
+      hints:
+        readOnly: false
+        destructive: false
+      call: threads.control-who-can-reply
+      with:
+        media_type: tools.media_type
+        text: tools.text
+        reply_control: tools.reply_control
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: publish-thread
+      description: Publish a created Threads media container
+      hints:
+        readOnly: false
+        destructive: false
+      call: threads.publish-thread
+      with:
+        creation_id: tools.creation_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-account-insights
+      description: Get Threads account analytics including views, likes, replies, and followers
+      hints:
+        readOnly: true
+        openWorld: true
+      call: threads.get-account-insights
+      with:
+        metric: tools.metric
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-replies
+      description: Get all user's reply posts on Threads
+      hints:
+        readOnly: true
+        openWorld: true
+      call: threads.list-replies
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-publishing-limit
+      description: Check publishing quota and rate limit status
+      hints:
+        readOnly: true
+        openWorld: true
+      call: threads.get-publishing-limit
+      outputParameters:
+      - type: object
+        mapping: $.
