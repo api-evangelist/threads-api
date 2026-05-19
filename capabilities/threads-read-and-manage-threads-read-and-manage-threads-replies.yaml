@@ -1,0 +1,250 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Threads API — Read And Manage Threads > Read and Manage Threads Replies
+  description: 'Threads API — Read And Manage Threads > Read and Manage Threads Replies. 4 operations. Lead operation: Control
+    Who Can Reply. Self-contained Naftiko capability covering one Threads Api business surface.'
+  tags:
+  - Threads Api
+  - Read And Manage Threads > Read and Manage Threads Replies
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    THREADS_API_API_KEY: THREADS_API_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: threads-read-and-manage-threads-read-and-manage-threads-replies
+    baseUri: http://{{api_host}}
+    description: Threads API — Read And Manage Threads > Read and Manage Threads Replies business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: me-threads
+      path: /me/threads
+      operations:
+      - name: post
+        method: POST
+        description: Control Who Can Reply
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: media_type
+          in: query
+          type: string
+        - name: text
+          in: query
+          type: string
+        - name: reply_control
+          in: query
+          type: string
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: reply_thread_id-manage_reply
+      path: /{reply_thread_id}/manage_reply
+      operations:
+      - name: post
+        method: POST
+        description: Hide Replies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: hide
+          in: query
+          type: boolean
+        - name: reply_thread_id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: thread_id-conversation
+      path: /{thread_id}/conversation
+      operations:
+      - name: get
+        method: GET
+        description: Get Threads Conversations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: string
+          description: 'id (default): The media''s ID.'
+        - name: reverse
+          in: query
+          type: boolean
+        - name: thread_id
+          in: path
+          type: string
+          required: true
+    - name: thread_id-replies
+      path: /{thread_id}/replies
+      operations:
+      - name: get
+        method: GET
+        description: Get Threads Replies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: string
+          description: 'id (default): The media''s ID.'
+        - name: reverse
+          in: query
+          type: boolean
+        - name: thread_id
+          in: path
+          type: string
+          required: true
+  exposes:
+  - type: rest
+    namespace: threads-read-and-manage-threads-read-and-manage-threads-replies-rest
+    port: 8080
+    description: REST adapter for Threads API — Read And Manage Threads > Read and Manage Threads Replies. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/me/threads
+      name: me-threads
+      description: REST surface for me-threads.
+      operations:
+      - method: POST
+        name: post
+        description: Control Who Can Reply
+        call: threads-read-and-manage-threads-read-and-manage-threads-replies.post
+        with:
+          media_type: rest.media_type
+          text: rest.text
+          reply_control: rest.reply_control
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{reply-thread-id}/manage-reply
+      name: reply-thread-id-manage-reply
+      description: REST surface for reply_thread_id-manage_reply.
+      operations:
+      - method: POST
+        name: post
+        description: Hide Replies
+        call: threads-read-and-manage-threads-read-and-manage-threads-replies.post
+        with:
+          hide: rest.hide
+          reply_thread_id: rest.reply_thread_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{thread-id}/conversation
+      name: thread-id-conversation
+      description: REST surface for thread_id-conversation.
+      operations:
+      - method: GET
+        name: get
+        description: Get Threads Conversations
+        call: threads-read-and-manage-threads-read-and-manage-threads-replies.get
+        with:
+          fields: rest.fields
+          reverse: rest.reverse
+          thread_id: rest.thread_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{thread-id}/replies
+      name: thread-id-replies
+      description: REST surface for thread_id-replies.
+      operations:
+      - method: GET
+        name: get
+        description: Get Threads Replies
+        call: threads-read-and-manage-threads-read-and-manage-threads-replies.get
+        with:
+          fields: rest.fields
+          reverse: rest.reverse
+          thread_id: rest.thread_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: threads-read-and-manage-threads-read-and-manage-threads-replies-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Threads API — Read And Manage Threads > Read and Manage Threads Replies. One tool per consumed
+      operation, routed inline through this capability's consumes block.
+    tools:
+    - name: control-who-can-reply
+      description: Control Who Can Reply
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: threads-read-and-manage-threads-read-and-manage-threads-replies.post
+      with:
+        media_type: tools.media_type
+        text: tools.text
+        reply_control: tools.reply_control
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: hide-replies
+      description: Hide Replies
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: threads-read-and-manage-threads-read-and-manage-threads-replies.post
+      with:
+        hide: tools.hide
+        reply_thread_id: tools.reply_thread_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-threads-conversations
+      description: Get Threads Conversations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: threads-read-and-manage-threads-read-and-manage-threads-replies.get
+      with:
+        fields: tools.fields
+        reverse: tools.reverse
+        thread_id: tools.thread_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-threads-replies
+      description: Get Threads Replies
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: threads-read-and-manage-threads-read-and-manage-threads-replies.get
+      with:
+        fields: tools.fields
+        reverse: tools.reverse
+        thread_id: tools.thread_id
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,83 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Threads API — Post to Threads > Repost Threads Posts
+  description: 'Threads API — Post to Threads > Repost Threads Posts. 1 operations. Lead operation: Repost Threads Post. Self-contained
+    Naftiko capability covering one Threads Api business surface.'
+  tags:
+  - Threads Api
+  - Post to Threads > Repost Threads Posts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    THREADS_API_API_KEY: THREADS_API_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: threads-post-to-threads-repost-threads-posts
+    baseUri: http://{{api_host}}
+    description: Threads API — Post to Threads > Repost Threads Posts business capability. Self-contained, no shared references.
+    resources:
+    - name: thread_id-repost
+      path: /{thread_id}/repost
+      operations:
+      - name: post
+        method: POST
+        description: Repost Threads Post
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: thread_id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+  exposes:
+  - type: rest
+    namespace: threads-post-to-threads-repost-threads-posts-rest
+    port: 8080
+    description: REST adapter for Threads API — Post to Threads > Repost Threads Posts. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/{thread-id}/repost
+      name: thread-id-repost
+      description: REST surface for thread_id-repost.
+      operations:
+      - method: POST
+        name: post
+        description: Repost Threads Post
+        call: threads-post-to-threads-repost-threads-posts.post
+        with:
+          thread_id: rest.thread_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: threads-post-to-threads-repost-threads-posts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Threads API — Post to Threads > Repost Threads Posts. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: repost-threads-post
+      description: Repost Threads Post
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: threads-post-to-threads-repost-threads-posts.post
+      with:
+        thread_id: tools.thread_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

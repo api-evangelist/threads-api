@@ -1,0 +1,83 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Threads API — Post to Threads > Quote Threads Posts
+  description: 'Threads API — Post to Threads > Quote Threads Posts. 1 operations. Lead operation: Publish Threads Quote Post.
+    Self-contained Naftiko capability covering one Threads Api business surface.'
+  tags:
+  - Threads Api
+  - Post to Threads > Quote Threads Posts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    THREADS_API_API_KEY: THREADS_API_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: threads-post-to-threads-quote-threads-posts
+    baseUri: http://{{api_host}}
+    description: Threads API — Post to Threads > Quote Threads Posts business capability. Self-contained, no shared references.
+    resources:
+    - name: me-threads_publish
+      path: /me/threads_publish
+      operations:
+      - name: post
+        method: POST
+        description: Publish Threads Quote Post
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: creation_id
+          in: query
+          type: string
+          description: Identifier of the Threads media container created from the /threads endpoint.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+  exposes:
+  - type: rest
+    namespace: threads-post-to-threads-quote-threads-posts-rest
+    port: 8080
+    description: REST adapter for Threads API — Post to Threads > Quote Threads Posts. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/me/threads-publish
+      name: me-threads-publish
+      description: REST surface for me-threads_publish.
+      operations:
+      - method: POST
+        name: post
+        description: Publish Threads Quote Post
+        call: threads-post-to-threads-quote-threads-posts.post
+        with:
+          creation_id: rest.creation_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: threads-post-to-threads-quote-threads-posts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Threads API — Post to Threads > Quote Threads Posts. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: publish-threads-quote-post
+      description: Publish Threads Quote Post
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: threads-post-to-threads-quote-threads-posts.post
+      with:
+        creation_id: tools.creation_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
