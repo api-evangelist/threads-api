@@ -1,0 +1,1738 @@
+{
+  "item": [
+    {
+      "id": "50c6a5a0-078f-44a9-aa05-db6fb0ef322a",
+      "name": "Authorization",
+      "description": {
+        "content": "Authorization is a required step to get the necessary user permissions to act on behalf of the user. Please take a look at the [walkthrough of the authentication process](https://developers.facebook.com/docs/threads/get-started/get-access-tokens-and-permissions). Once the access token is retrieved, use the [access token debugger](https://developers.facebook.com/tools/debug/accesstoken) to check if the access token has the correct permissions (including `threads_basic`, `threads_content_publish`, `threads_read_replies`, `threads_manage_replies`, `threads_manage_insights`) and verify that the access token hasn't expired.\n\nFollow the [documentation](https://developers.facebook.com/docs/threads/get-started/long-lived-tokens) to exchange a short-lived Threads User Access Token for a long-lived token and refresh unexpired long-lived Threads User Access tokens. **Note:** The `threads_basic` permission is sufficient for the exchange or refresh process.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d3d29c31-a3b6-4938-8b6c-90ef317acc5e",
+          "name": "Exchange the Code For a Token",
+          "request": {
+            "name": "Exchange the Code For a Token",
+            "description": {
+              "content": "Once you receive a code, exchange it for a short-lived access token by sending a `POST` request to the /oauth/access_token [endpoint](https://developers.facebook.com/docs/threads/get-started/get-access-tokens-and-permissions#step-2--exchange-the-code-for-a-token)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth",
+                "access_token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>",
+                  "description": "Your Threads App ID displayed in App Dashboard > App settings > Basic > Threads App ID. Example: 990602627938098."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_secret",
+                  "value": "<string>",
+                  "description": "Your Threads App Secret displayed in App Dashboard > App settings > Basic > Threads App secret. Example: a1b2C3D4."
+                },
+                {
+                  "disabled": false,
+                  "key": "code",
+                  "value": "<string>",
+                  "description": "Authorization Code"
+                },
+                {
+                  "disabled": false,
+                  "key": "grant_type",
+                  "value": "<string>",
+                  "description": "This value is required"
+                },
+                {
+                  "disabled": false,
+                  "key": "redirect_uri",
+                  "value": "<string>",
+                  "description": "The redirect URI you passed when you directed the user to the Authorization Window. This must be the same URI or the request will be rejected."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": []
+            }
+          },
+          "response": [
+            {
+              "id": "ea615f3c-74f3-4c2e-835a-9bc2a1d60a66",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth",
+                    "access_token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "{{app_id}}"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "{{app_secret}}"
+                    },
+                    {
+                      "key": "code",
+                      "value": "{{code}}"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "{{redirect_uri}}"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": []
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"string\",\n  \"user_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ddec884-264d-431d-a88a-860dee0857e9",
+          "name": "Get Long-Lived Access Token",
+          "request": {
+            "name": "Get Long-Lived Access Token",
+            "description": {
+              "content": "Use the `GET` /access_token [endpoint](https://developers.facebook.com/docs/threads/get-started/long-lived-tokens#get-a-long-lived-token) to exchange a short-lived Threads user access token for a long-lived token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access_token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "grant_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "client_secret",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "88250afa-acb8-4358-beec-e8f73b7db5dd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access_token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "grant_type",
+                      "value": "th_exchange_token"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "{{app_secret}}"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"string\",\n  \"token_type\": \"bearer\",\n  \"expires_in\": 5184000\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "83fbf7be-8982-4672-8225-6981d4211105",
+      "name": "Post to Threads",
+      "description": {
+        "content": "This folder will enable you to use the Threads API to publish single image, video, text or carousel posts.",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    },
+    {
+      "id": "c211c020-d3ea-4298-a823-12e35a2c8d6a",
+      "name": "Post to Threads > Single Threads Posts",
+      "description": {
+        "content": "This folder will enable you to:\n\n1. Create a Media Container of text/image/video type. The API will return a Media Container ID which will be used in the second step.\n2. Publish a single Threads post.",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    },
+    {
+      "id": "5ba214c3-e805-4955-8a69-f50a5180ed35",
+      "name": "Post to Threads > Carousel Threads Posts",
+      "description": {
+        "content": "This folder will enable you to:\n\n1. Create an Item Container for each image or video that will appear in a Carousel.\n    \n2. Create a Carousel Container.\n    \n3. Publish a Carousel post.",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    },
+    {
+      "id": "6388cc62-9a51-49ba-9290-b340d8480b65",
+      "name": "Post to Threads > Quote Threads Posts",
+      "description": {
+        "content": "This folder will enable you to:\n\n1. Create a Media Container. The API will return a Media Container ID which will be used in the second step.\n    \n2. Publish a single Quote post.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "13f54118-bdb8-474c-a5b5-28f721285f6b",
+          "name": "2. Publish Threads Quote Post",
+          "request": {
+            "name": "2. Publish Threads Quote Post",
+            "description": {
+              "content": "Use the `POST` /{threads-user-id}/threads_publish [endpoint](https://developers.facebook.com/docs/threads/posts#step-2--publish-a-threads-media-container) to publish the container ID returned in the previous step.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "me",
+                "threads_publish"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "creation_id",
+                  "value": "<string>",
+                  "description": "Identifier of the Threads media container created from the /threads endpoint."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            }
+          },
+          "response": [
+            {
+              "id": "ced2df39-c2bb-4dc2-8125-27bc38dbb760",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "me",
+                    "threads_publish"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "creation_id",
+                      "value": "{{container_id}}"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "cdc2ac8a-5b8e-4b55-a69c-6e84e2cbeb09",
+      "name": "Post to Threads > Repost Threads Posts",
+      "description": {
+        "content": "This folder will enable you to repost an original Threads post.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fb187eeb-6c20-46b2-8dd9-4a1783c982d8",
+          "name": "Repost Threads Post",
+          "request": {
+            "name": "Repost Threads Post",
+            "description": {
+              "content": "Use the `POST` /{threads-user-id}/threads_publish [endpoint](https://developers.facebook.com/docs/threads/posts#step-2--publish-a-threads-media-container) to publish the container ID returned in the previous step.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":thread_id",
+                "repost"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "thread_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            }
+          },
+          "response": [
+            {
+              "id": "4088d063-b583-4061-926c-956e4f344d44",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":thread_id",
+                    "repost"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "thread_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "06182cc4-2007-429b-8a87-5aea4c24e322",
+      "name": "Read And Manage Threads",
+      "description": {
+        "content": "This folder will enable you to use the Threads API to retrieve details about profiles and media objects, reads insights and handle reply moderation.",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    },
+    {
+      "id": "a7502798-2b63-4352-8794-665602a03ff2",
+      "name": "Read And Manage Threads > Retrieve Threads Profiles",
+      "description": {
+        "content": "This folder will enable you to get profile information about a Threads user.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2199610c-051b-45e8-860f-03f0672002e5",
+          "name": "Get Threads User's Profile Information",
+          "request": {
+            "name": "Get Threads User's Profile Information",
+            "description": {
+              "content": "Use the `GET` /{threads-user-id}?fields=id,username,... [endpoint](https://developers.facebook.com/docs/threads/threads-profiles#retrieve-a-threads-user-s-profile-information) to return profile information about a Threads user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "id: Threads user ID. This is returned by default.\n\nusername: Handle or unique username on Threads. This is the same as the username on Instagram.\n\nthreads_profile_picture_url: URL of the user's profile picture on Threads.\n\nthreads_biography: Biography text on Threads profile."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "57b26183-2845-464d-b746-b1d61446598f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "{{fields_profile}}"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"username\": \"string\",\n  \"name\": \"string\",\n  \"threads_profile_picture_url\": \"string\",\n  \"threads_biography\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "9c380f78-d7b9-4aa9-a669-8c16c1e6ce38",
+      "name": "Read And Manage Threads > Retrieve Threads Media Objects",
+      "description": {
+        "content": "This folder will enable you to use the Threads API to retrieve details about posts.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b2a52fc4-d0b5-4da8-9345-94ff3d784a3a",
+          "name": "Get a List of All a User's Threads",
+          "request": {
+            "name": "Get a List of All a User's Threads",
+            "description": {
+              "content": "Use the `GET` /{threads-user-id}/threads [endpoint](https://developers.facebook.com/docs/threads/threads-media#retrieve-a-list-of-all-a-user-s-threads) to return a paginated list of all threads created by a user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "me",
+                "threads"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "id (default): The media's ID.\n\nmedia_product_type: Surface where the media is published. In the case of Threads, the value is THREADS.\n\nmedia_type: The media type for a Threads post will be one of these values: TEXT_POST, IMAGE, VIDEO, CAROUSEL_ALBUM, AUDIO, or REPOST_FACADE.\n\nmedia_url: The posts media URL.\n\npermalink: Permanent link to the post. Will be omitted if the media contains copyrighted material or has been flagged for a copyright violation.\n\nowner: Instagram user ID who created the post.\n\nusername: Instagram username who created the post.\n\ntext: Represents text for a Threads post.\n\ntimestamp: Post time. The publish date in ISO 8601 format.\n\nshortcode: Shortcode of the media.\n\nthumbnail_url: URL of thumbnail. This only shows up for Threads media with video.\n\nchildren: List of child posts. This only shows up for carousel posts.\n\nis_quote_post: Indicates if the media is a quoted post made by another user."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Query string parameter representing the maximum number of media objects or records to return"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b84761ac-d0e2-449a-8a53-a9b3b28239eb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "me",
+                    "threads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "{{fields_threads}}"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"media_product_type\": \"THREADS\",\n      \"media_type\": \"TEXT_POST\",\n      \"permalink\": \"string\",\n      \"owner\": {\n        \"id\": \"string\"\n      },\n      \"username\": \"string\",\n      \"text\": \"This is a test post\",\n      \"timestamp\": \"2024-09-12T23:17:39+0000\",\n      \"shortcode\": \"string\",\n      \"is_quote_post\": false,\n      \"has_replies\": false\n    }\n  ],\n  \"paging\": {\n    \"cursors\": {\n      \"before\": \"string\",\n      \"after\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a752bfde-9fc0-44d6-8816-159322492cd2",
+          "name": "Get Threads Post Details",
+          "request": {
+            "name": "Get Threads Post Details",
+            "description": {
+              "content": "Use the `GET` /{threads-media-id} [endpoint](https://developers.facebook.com/docs/threads/threads-media#retrieve-a-single-threads-media-object) to return an individual Threads media object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":thread_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "id (default): The media's ID.\n\nmedia_product_type: Surface where the media is published. In the case of Threads, the value is THREADS.\n\nmedia_type: The media type for a Threads post will be one of these values: TEXT_POST, IMAGE, VIDEO, CAROUSEL_ALBUM, AUDIO, or REPOST_FACADE.\n\nmedia_url: The posts media URL.\n\npermalink: Permanent link to the post. Will be omitted if the media contains copyrighted material or has been flagged for a copyright violation.\n\nowner: Instagram user ID who created the post.\n\nusername: Instagram username who created the post.\n\ntext: Represents text for a Threads post.\n\ntimestamp: Post time. The publish date in ISO 8601 format.\n\nshortcode: Shortcode of the media.\n\nthumbnail_url: URL of thumbnail. This only shows up for Threads media with video.\n\nchildren: List of child posts. This only shows up for carousel posts.\n\nis_quote_post: Indicates if the media is a quoted post made by another user."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "thread_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ea9c1ab-d505-4d6a-85b0-523f240a94ef",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":thread_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "{{fields_threads}}"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "thread_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"media_product_type\": \"THREADS\",\n  \"media_type\": \"TEXT_POST\",\n  \"permalink\": \"string\",\n  \"owner\": {\n    \"id\": \"string\"\n  },\n  \"username\": \"string\",\n  \"text\": \"This is a test post\",\n  \"timestamp\": \"2024-09-12T23:17:39+0000\",\n  \"shortcode\": \"string\",\n  \"is_quote_post\": false,\n  \"has_replies\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "11e51e2d-024c-4f4e-8f32-161cdd7c3362",
+      "name": "Read And Manage Threads > Read Threads Insights",
+      "description": {
+        "content": "This folder will enable you to use the Threads API to retrieve details about posts and accounts.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "792f4d71-5ec7-4c79-9952-32509c8453e1",
+          "name": "Get Post Insights",
+          "request": {
+            "name": "Get Post Insights",
+            "description": {
+              "content": "Use the `GET` /{threads-media-id}/insights [endpoint](https://developers.facebook.com/docs/threads/insights#media-insights) to return the insights of a given Threads post.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":thread_id",
+                "insights"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "metric",
+                  "value": "<string>",
+                  "description": "views: The number of times the post was viewed.\nNote: This metric is in development.\n\nlikes: The number of likes on the post.\n\nreplies: The number of replies on the post.\nNote: This number includes only top-level replies.\n\nreposts: The number of times the post was reposted.\n\nquotes: The number of times the post was quoted."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "thread_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2bf54e79-8faa-417a-b5fb-63c6f0125c11",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":thread_id",
+                    "insights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metric",
+                      "value": "{{metrics_post}}"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "thread_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "{\n    \"data\": [\n        {\n            \"name\": \"views\",\n            \"period\": \"lifetime\",\n            \"values\": [\n                {\n                    \"value\": 0\n                }\n            ],\n            \"title\": \"Views\",\n            \"description\": \"The number of times your post was viewed. This metric is in development (https://www.facebook.com/business/help/metrics-labeling)\",\n            \"id\": \"{thread_id}/insights/views/lifetime\"\n        },\n        {\n            \"name\": \"likes\",\n            \"period\": \"lifetime\",\n            \"values\": [\n                {\n                    \"value\": 0\n                }\n            ],\n            \"title\": \"Likes\",\n            \"description\": \"The number of likes on your post.\",\n            \"id\": \"{thread_id}/insights/likes/lifetime\"\n        },\n        {\n            \"name\": \"replies\",\n            \"period\": \"lifetime\",\n            \"values\": [\n                {\n                    \"value\": 0\n                }\n            ],\n            \"title\": \"Replies\",\n            \"description\": \"The number of replies on your post.\",\n            \"id\": \"{thread_id}/insights/thread_replies/lifetime\"\n        },\n        {\n            \"name\": \"reposts\",\n            \"period\": \"lifetime\",\n            \"values\": [\n                {\n                    \"value\": 0\n                }\n            ],\n            \"title\": \"Reposts\",\n            \"description\": \"The number of times your post was reposted.\",\n            \"id\": \"{thread_id}/insights/reposts/lifetime\"\n        },\n        {\n            \"name\": \"quotes\",\n            \"period\": \"lifetime\",\n            \"values\": [\n                {\n                    \"value\": 0\n                }\n            ],\n            \"title\": \"Quotes\",\n            \"description\": \"The number of times your post was quoted.\",\n            \"id\": \"{thread_id}/insights/quotes/lifetime\"\n        }\n    ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "756e915a-24de-4cb0-94aa-73141404b829",
+          "name": "Get Account Insights",
+          "request": {
+            "name": "Get Account Insights",
+            "description": {
+              "content": "Use the `GET` /{threads-user-id}/threads_insights [endpoint](https://developers.facebook.com/docs/threads/insights#user-insights) to return the insights of a given Threads user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "me",
+                "threads_insights"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "metric",
+                  "value": "<string>",
+                  "description": "views: The number of times the post was viewed.\nNote: This metric is in development.\n\nlikes: The number of likes on the post.\n\nreplies: The number of replies on the post.\nNote: This number includes only top-level replies.\n\nreposts: The number of times the post was reposted.\n\nquotes: The number of times the post was quoted.\n\nreposts: The number of times your posts were quoted.\n\nfollowers_count: Your total number of followers on Threads.\n\nfollower_demographics: The demographic characteristics of followers, including countries, cities and gender distribution.\nNote: Does not support the since and until parameters."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "12b8f19d-411d-45f4-9154-b33dbe947fd3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "me",
+                    "threads_insights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metric",
+                      "value": "{{metrics_account}}"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "{\n    \"data\": [\n        {\n            \"name\": \"views\",\n            \"period\": \"day\",\n            \"values\": [\n                {\n                    \"value\": 0,\n                    \"end_time\": \"2024-09-16T07:00:00+0000\"\n                },\n                {\n                    \"value\": 0,\n                    \"end_time\": \"2024-09-17T07:00:00+0000\"\n                }\n            ],\n            \"title\": \"views\",\n            \"description\": \"The number of times your profile was viewed.\",\n            \"id\": \"{user_id}/insights/views/day\"\n        },\n        {\n            \"name\": \"likes\",\n            \"period\": \"day\",\n            \"title\": \"likes\",\n            \"description\": \"The number of likes on your posts.\",\n            \"total_value\": {\n                \"value\": 0\n            },\n            \"id\": \"{user_id}/insights/likes/day\"\n        },\n        {\n            \"name\": \"replies\",\n            \"period\": \"day\",\n            \"title\": \"replies\",\n            \"description\": \"The number of replies on your posts.\",\n            \"total_value\": {\n                \"value\": 0\n            },\n            \"id\": \"{user_id}/insights/replies/day\"\n        },\n        {\n            \"name\": \"reposts\",\n            \"period\": \"day\",\n            \"title\": \"reposts\",\n            \"description\": \"The number of times your posts were reposted.\",\n            \"total_value\": {\n                \"value\": 0\n            },\n            \"id\": \"{user_id}/insights/reposts/day\"\n        },\n        {\n            \"name\": \"quotes\",\n            \"period\": \"day\",\n            \"title\": \"quotes\",\n            \"description\": \"The number of times your posts were quoted.\",\n            \"total_value\": {\n                \"value\": 0\n            },\n            \"id\": \"{user_id}/insights/quotes/day\"\n        },\n        {\n            \"name\": \"followers_count\",\n            \"period\": \"day\",\n            \"title\": \"followers_count\",\n            \"description\": \"This is your total number of followers on Threads.\",\n            \"total_value\": {\n                \"value\": 0\n            },\n            \"id\": \"{user_id}/insights/followers_count/day\"\n        }\n    ],\n    \"paging\": {\n        \"previous\": \"string\",\n        \"next\": \"string\"\n    }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ffd319ca-882b-4184-9205-e5cddaf2ad9e",
+      "name": "Read And Manage Threads > Read and Manage Threads Replies",
+      "description": {
+        "content": "The Threads Reply Moderation API allows you to read and manage replies to users' own Threads.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5c77d22d-db9b-4fb7-9d87-59363645aa7f",
+          "name": "Control Who Can Reply",
+          "request": {
+            "name": "Control Who Can Reply",
+            "description": {
+              "content": "Use the [reply_control](https://developers.facebook.com/docs/threads/reply-management#control-who-can-reply) parameter to specify who can reply to a post being created for publishing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "me",
+                "threads"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "media_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "text",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "reply_control",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": ""
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            }
+          },
+          "response": [
+            {
+              "id": "46a83a7d-7cd9-48fc-add9-2c4ed1690273",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "me",
+                    "threads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "media_type",
+                      "value": "{{media_type}}"
+                    },
+                    {
+                      "key": "text",
+                      "value": "Text"
+                    },
+                    {
+                      "key": "reply_control",
+                      "value": "{{reply_control}}"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "{\n    \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cae1f4c2-8fb9-4200-ac50-2651a205bf56",
+          "name": "Get Threads Replies",
+          "request": {
+            "name": "Get Threads Replies",
+            "description": {
+              "content": "Use `GET` /replies [endpoint](https://developers.facebook.com/docs/threads/reply-management#replies) to fetch a paginated list of all top-level replies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":thread_id",
+                "replies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "id (default): The media's ID.\n\ntext: Represents text for a Threads reply. This is optional on image, video, and carousel replies.\n\nusername: Instagram username who created the post.\nNote: This only works for public users, your own user, and users that you follow.\n\npermalink: Permanent link to the post. Will be omitted if the media contains copyrighted material or has been flagged for a copyright violation.\nNote: This only works for public users, your own user, and users that you follow.\n\ntimestamp: The publish date and time of the post in ISO 8601 format.\n\nmedia_product_type: Surface where the media is published. In the case of Threads, the value is THREADS.\n\nmedia_type: The media type for a Threads reply.\nValues: TEXT_POST, IMAGE, VIDEO, CAROUSEL_ALBUM\n\nmedia_url: The posts media URL. This only shows for image, video, and carousel replies.\n\nshortcode: Shortcode of the media.\n\nthumbnail_url: URL of thumbnail. This only shows for Threads replies with video.\n\nchildren: List of child posts. This only shows for carousel replies.\n\nhas_replies: true if the Threads post or reply has replies that you can see.\n\nroot_post: Media ID of the top-level post or original thread in the reply tree.\nNote: This only appears on replies.\n\nreplied_to: Media ID of the immediate parent of the reply.\nNote: This only appears on replies.\n\nis_reply: true if the Threads media is a reply. false if the Threads media is a top-level post.\n\nhide_status: Whether or not the reply is hidden.\nValues: NOT_HUSHED, UNHUSHED, HIDDEN"
+                },
+                {
+                  "disabled": false,
+                  "key": "reverse",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "thread_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1126ae40-a8ce-42a9-a090-23e64b40b06a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":thread_id",
+                    "replies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "text"
+                    },
+                    {
+                      "key": "reverse",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "thread_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"text\": \"reply\",\n      \"timestamp\": \"2024-09-17T20:54:47+0000\",\n      \"media_product_type\": \"THREADS\",\n      \"media_type\": \"TEXT_POST\",\n      \"permalink\": \"string\",\n      \"shortcode\": \"string\",\n      \"username\": \"string\",\n      \"is_quote_post\": false,\n      \"has_replies\": false,\n      \"is_reply\": true,\n      \"is_reply_owned_by_me\": false,\n      \"root_post\": {\n        \"id\": \"string\"\n      },\n      \"replied_to\": {\n        \"id\": \"string\"\n      }\n    }\n  ],\n  \"paging\": {\n    \"cursors\": {\n      \"before\": \"string\",\n      \"after\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2f4b0a28-b63a-4de0-8387-10561b51f938",
+          "name": "Get Threads Conversations",
+          "request": {
+            "name": "Get Threads Conversations",
+            "description": {
+              "content": "Use `GET` /conversation [endpoint](https://developers.facebook.com/docs/threads/reply-management#conversations) to fetch a paginated and flattened list of all top-level and nested replies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":thread_id",
+                "conversation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "id (default): The media's ID.\n\ntext: Represents text for a Threads reply. This is optional on image, video, and carousel replies.\n\nusername: Instagram username who created the post.\nNote: This only works for public users, your own user, and users that you follow.\n\npermalink: Permanent link to the post. Will be omitted if the media contains copyrighted material or has been flagged for a copyright violation.\nNote: This only works for public users, your own user, and users that you follow.\n\ntimestamp: The publish date and time of the post in ISO 8601 format.\n\nmedia_product_type: Surface where the media is published. In the case of Threads, the value is THREADS.\n\nmedia_type: The media type for a Threads reply.Values: TEXT_POST, IMAGE, VIDEO, CAROUSEL_ALBUM\n\nmedia_url: The posts media URL. This only shows for image, video, and carousel replies.\n\nshortcode: Shortcode of the media.\n\nthumbnail_url: URL of thumbnail. This only shows for Threads replies with video.\n\nchildren: List of child posts. This only shows for carousel replies.\n\nhas_replies: true if the Threads post or reply has replies that you can see.\n\nroot_post: Media ID of the top-level post or original thread in the reply tree.\nNote: This only appears on replies.\n\nreplied_to: Media ID of the immediate parent of the reply.\nNote: This only appears on replies.\n\nis_reply: true if the Threads media is a reply. false if the Threads media is a top-level post.\n\nhide_status: Whether or not the reply is hidden.\nValues: NOT_HUSHED, UNHUSHED, HIDDEN"
+                },
+                {
+                  "disabled": false,
+                  "key": "reverse",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "thread_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8c9fba5c-3f58-422c-be99-32ce95a948a2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":thread_id",
+                    "conversation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "{{fields_replies}}"
+                    },
+                    {
+                      "key": "reverse",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "thread_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"text\": \"reply\",\n      \"timestamp\": \"2024-09-17T20:54:47+0000\",\n      \"media_product_type\": \"THREADS\",\n      \"media_type\": \"TEXT_POST\",\n      \"permalink\": \"string\",\n      \"shortcode\": \"string\",\n      \"username\": \"string\",\n      \"is_quote_post\": false,\n      \"has_replies\": false,\n      \"is_reply\": true,\n      \"is_reply_owned_by_me\": false,\n      \"root_post\": {\n        \"id\": \"string\"\n      },\n      \"replied_to\": {\n        \"id\": \"string\"\n      }\n    }\n  ],\n  \"paging\": {\n    \"cursors\": {\n      \"before\": \"string\",\n      \"after\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b6ecaa2-85d8-4419-9d6b-d9498d6cdc88",
+          "name": "Hide Replies",
+          "request": {
+            "name": "Hide Replies",
+            "description": {
+              "content": "Use `POST` /manage_reply [endpoint](https://developers.facebook.com/docs/threads/reply-management#hide-replies) to hide/unhide any top-level replies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":reply_thread_id",
+                "manage_reply"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "hide",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reply_thread_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            }
+          },
+          "response": [
+            {
+              "id": "e0be9840-42fc-4b46-b76b-5d6660f4832d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":reply_thread_id",
+                    "manage_reply"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "hide",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reply_thread_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "48c91f9d-7a1e-4b03-aa26-fb65a19deab7",
+      "name": "Read And Manage Threads > Read Replies Media Objects",
+      "description": {
+        "content": "This folder will enable you to use the Threads API to retrieve details about a user's own replies.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "673b86b7-9269-46fc-805b-9e00aa0bf01e",
+          "name": "Get a List of All a User's Replies",
+          "request": {
+            "name": "Get a List of All a User's Replies",
+            "description": {
+              "content": "Use the `GET` /{threads-user-id}/threads [endpoint](https://developers.facebook.com/docs/threads/threads-media#retrieve-a-list-of-all-a-user-s-threads) to return a paginated list of all threads created by a user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "me",
+                "replies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "id (default): The media's ID.\n\nmedia_product_type: Surface where the media is published. In the case of Threads, the value is THREADS.\n\nmedia_type: The media type for a Threads post will be one of these values: TEXT_POST, IMAGE, VIDEO, CAROUSEL_ALBUM, AUDIO, or REPOST_FACADE.\n\nmedia_url: The posts media URL.\n\npermalink: Permanent link to the post. Will be omitted if the media contains copyrighted material or has been flagged for a copyright violation.\n\nowner: Instagram user ID who created the post.\n\nusername: Instagram username who created the post.\n\ntext: Represents text for a Threads post.\n\ntimestamp: Post time. The publish date in ISO 8601 format.\n\nshortcode: Shortcode of the media.\n\nthumbnail_url: URL of thumbnail. This only shows up for Threads media with video.\n\nchildren: List of child posts. This only shows up for carousel posts.\n\nis_quote_post: Indicates if the media is a quoted post made by another user."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Query string parameter representing the maximum number of media objects or records to return"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2629ac24-f651-4c36-a9ac-cb2702286f54",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "me",
+                    "replies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "{{fields_replies}}"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"media_product_type\": \"THREADS\",\n      \"media_type\": \"TEXT_POST\",\n      \"permalink\": \"string\",\n      \"username\": \"string\",\n      \"text\": \"REPLY\",\n      \"timestamp\": \"2024-09-12T23:11:55+0000\",\n      \"shortcode\": \"string\",\n      \"is_quote_post\": false,\n      \"has_replies\": false\n    }\n  ],\n  \"paging\": {\n    \"cursors\": {\n      \"before\": \"string\",\n      \"after\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "21f1da8e-3153-49e4-b0ff-a87c31197bc5",
+      "name": "Troubleshooting",
+      "description": {
+        "content": "This folder will enbale you to perform basic toubleshooting.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "61db3a2f-cfc6-4daf-8ef9-de7a09eb6ac2",
+          "name": "Check Container's Publishing Status",
+          "request": {
+            "name": "Check Container's Publishing Status",
+            "description": {
+              "content": "Use `POST` /{threads-user-id}/threads_publish [endpoint](https://developers.facebook.com/docs/threads/troubleshooting#publishing-does-not-return-a-media-id) to check a container's publishing status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":container_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "EXPIRED  The container was not published within 24 hours and has expired.\nERROR  The container failed to complete the publishing process.\nFINISHED  The container and its media object are ready to be published.\nIN_PROGRESS  The container is still in the publishing process.\nPUBLISHED  The container's media object has been published.\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "container_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d335a034-94a6-437a-8c94-94442abab49c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":container_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "{{fields_container}}"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "container_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "{\n    \"id\": \"string\",\n    \"status\": \"FINISHED\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "83182886-f6bb-4916-a1f2-dd91d14fa8f6",
+          "name": "Retrieve Publishing Quota Limit",
+          "request": {
+            "name": "Retrieve Publishing Quota Limit",
+            "description": {
+              "content": "Use `GET` /threads_publishing_limit [endpoint](https://developers.facebook.com/docs/threads/troubleshooting#retrieve-publishing-quota-limit) to check a user's publishing API quota limit.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "me",
+                "threads_publishing_limit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "user's current Threads API usage total."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "730d1b28-e5c6-427b-949c-fe4abb5bac64",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "me",
+                    "threads_publishing_limit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "{{fields_quota}}"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "{\n    \"data\": [\n        {\n            \"quota_usage\": 1,\n            \"config\": {\n                \"quota_total\": 250,\n                \"quota_duration\": 86400\n            },\n            \"reply_quota_usage\": 0,\n            \"reply_config\": {\n                \"quota_total\": 1000,\n                \"quota_duration\": 86400\n            }\n        }\n    ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://{{api_host}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "82f9a7ac-49c1-48f4-97f4-81c690f82289",
+    "name": "Threads API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Threads API enables developers to build their own unique integrations, and helps creators and brands manage their Threads presence at scale and easily share inspiring content with their communities.",
+      "type": "text/plain"
+    }
+  }
+}
