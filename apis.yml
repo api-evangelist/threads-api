@@ -54,6 +54,12 @@ apis:
       - type: JSONSchema
         url: json-schema/threads-api-thread-schema.json
 common:
+  - type: VulnerabilityDisclosure
+    url: security/threads-api-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/threads-api-domain-security.yml
+  - type: Authentication
+    url: authentication/threads-api-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/threads-meta
   - type: Website

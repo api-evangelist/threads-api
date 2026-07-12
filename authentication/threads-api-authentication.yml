@@ -1,0 +1,19 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/threads-api-openapi.yml, openapi/threads-api.yml
+summary:
+  types:
+  - http
+schemes:
+- name: noauthAuth
+  type: http
+  scheme: noauth
+  sources:
+  - openapi/threads-api-openapi.yml
+  - openapi/threads-api.yml
+- name: oauth2Auth
+  type: http
+  scheme: oauth2
+  sources:
+  - openapi/threads-api-openapi.yml
+  - openapi/threads-api.yml
