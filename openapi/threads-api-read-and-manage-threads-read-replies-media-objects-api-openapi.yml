@@ -1,0 +1,103 @@
+openapi: 3.0.0
+info:
+  title: Threads Authorization Read And Manage Threads > Read Replies Media Objects API
+  description: The Threads API enables developers to build their own unique integrations, and helps creators and brands manage their Threads presence at scale and easily share inspiring content with their communities.
+  version: 1.0.0
+servers:
+- url: http://{{api_host}}
+security:
+- oauth2Auth: []
+tags:
+- name: Read And Manage Threads > Read Replies Media Objects
+  description: This folder will enable you to use the Threads API to retrieve details about a user's own replies.
+paths:
+  /me/replies:
+    get:
+      tags:
+      - Read And Manage Threads > Read Replies Media Objects
+      summary: Get a List of All a User's Replies
+      description: Use the `GET` /{threads-user-id}/threads [endpoint](https://developers.facebook.com/docs/threads/threads-media#retrieve-a-list-of-all-a-user-s-threads) to return a paginated list of all threads created by a user.
+      parameters:
+      - name: fields
+        in: query
+        schema:
+          type: string
+        description: 'id (default): The media''s ID.
+
+
+          media_product_type: Surface where the media is published. In the case of Threads, the value is THREADS.
+
+
+          media_type: The media type for a Threads post will be one of these values: TEXT_POST, IMAGE, VIDEO, CAROUSEL_ALBUM, AUDIO, or REPOST_FACADE.
+
+
+          media_url: The posts media URL.
+
+
+          permalink: Permanent link to the post. Will be omitted if the media contains copyrighted material or has been flagged for a copyright violation.
+
+
+          owner: Instagram user ID who created the post.
+
+
+          username: Instagram username who created the post.
+
+
+          text: Represents text for a Threads post.
+
+
+          timestamp: Post time. The publish date in ISO 8601 format.
+
+
+          shortcode: Shortcode of the media.
+
+
+          thumbnail_url: URL of thumbnail. This only shows up for Threads media with video.
+
+
+          children: List of child posts. This only shows up for carousel posts.
+
+
+          is_quote_post: Indicates if the media is a quoted post made by another user.'
+        example: '{{fields_replies}}'
+      - name: limit
+        in: query
+        schema:
+          type: integer
+        description: Query string parameter representing the maximum number of media objects or records to return
+        example: '50'
+      responses:
+        undefined:
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                - id: string
+                  media_product_type: THREADS
+                  media_type: TEXT_POST
+                  permalink: string
+                  username: string
+                  text: REPLY
+                  timestamp: 2024-09-12T23:11:55+0000
+                  shortcode: string
+                  is_quote_post: false
+                  has_replies: false
+                paging:
+                  cursors:
+                    before: string
+                    after: string
+components:
+  securitySchemes:
+    noauthAuth:
+      type: http
+      scheme: noauth
+    oauth2Auth:
+      type: http
+      scheme: oauth2

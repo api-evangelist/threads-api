@@ -1,0 +1,60 @@
+openapi: 3.0.0
+info:
+  title: Threads Authorization Read And Manage Threads > Retrieve Threads Profiles API
+  description: The Threads API enables developers to build their own unique integrations, and helps creators and brands manage their Threads presence at scale and easily share inspiring content with their communities.
+  version: 1.0.0
+servers:
+- url: http://{{api_host}}
+security:
+- oauth2Auth: []
+tags:
+- name: Read And Manage Threads > Retrieve Threads Profiles
+  description: This folder will enable you to get profile information about a Threads user.
+paths:
+  /me:
+    get:
+      tags:
+      - Read And Manage Threads > Retrieve Threads Profiles
+      summary: Get Threads User's Profile Information
+      description: Use the `GET` /{threads-user-id}?fields=id,username,... [endpoint](https://developers.facebook.com/docs/threads/threads-profiles#retrieve-a-threads-user-s-profile-information) to return profile information about a Threads user.
+      parameters:
+      - name: fields
+        in: query
+        schema:
+          type: string
+        description: 'id: Threads user ID. This is returned by default.
+
+
+          username: Handle or unique username on Threads. This is the same as the username on Instagram.
+
+
+          threads_profile_picture_url: URL of the user''s profile picture on Threads.
+
+
+          threads_biography: Biography text on Threads profile.'
+        example: '{{fields_profile}}'
+      responses:
+        undefined:
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: string
+                username: string
+                name: string
+                threads_profile_picture_url: string
+                threads_biography: string
+components:
+  securitySchemes:
+    noauthAuth:
+      type: http
+      scheme: noauth
+    oauth2Auth:
+      type: http
+      scheme: oauth2

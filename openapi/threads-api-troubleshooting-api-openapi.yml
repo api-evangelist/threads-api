@@ -1,0 +1,76 @@
+openapi: 3.0.0
+info:
+  title: Threads Authorization Troubleshooting API
+  description: The Threads API enables developers to build their own unique integrations, and helps creators and brands manage their Threads presence at scale and easily share inspiring content with their communities.
+  version: 1.0.0
+servers:
+- url: http://{{api_host}}
+security:
+- oauth2Auth: []
+tags:
+- name: Troubleshooting
+  description: This folder will enbale you to perform basic toubleshooting.
+paths:
+  /{container_id}/:
+    get:
+      tags:
+      - Troubleshooting
+      summary: Check Container's Publishing Status
+      description: Use `POST` /{threads-user-id}/threads_publish [endpoint](https://developers.facebook.com/docs/threads/troubleshooting#publishing-does-not-return-a-media-id) to check a container's publishing status.
+      parameters:
+      - name: fields
+        in: query
+        schema:
+          type: string
+        description: 'EXPIRED  The container was not published within 24 hours and has expired.
+
+          ERROR  The container failed to complete the publishing process.
+
+          FINISHED  The container and its media object are ready to be published.
+
+          IN_PROGRESS  The container is still in the publishing process.
+
+          PUBLISHED  The container''s media object has been published.
+
+          '
+        example: '{{fields_container}}'
+      - name: container_id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        undefined:
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: "{\n    \"id\": \"string\",\n    \"status\": \"FINISHED\"\n}"
+  /me/threads_publishing_limit:
+    get:
+      tags:
+      - Troubleshooting
+      summary: Retrieve Publishing Quota Limit
+      description: Use `GET` /threads_publishing_limit [endpoint](https://developers.facebook.com/docs/threads/troubleshooting#retrieve-publishing-quota-limit) to check a user's publishing API quota limit.
+      parameters:
+      - name: fields
+        in: query
+        schema:
+          type: string
+        description: user's current Threads API usage total.
+        example: '{{fields_quota}}'
+      responses:
+        undefined:
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: "{\n    \"data\": [\n        {\n            \"quota_usage\": 1,\n            \"config\": {\n                \"quota_total\": 250,\n                \"quota_duration\": 86400\n            },\n            \"reply_quota_usage\": 0,\n            \"reply_config\": {\n                \"quota_total\": 1000,\n                \"quota_duration\": 86400\n            }\n        }\n    ]\n}"
+components:
+  securitySchemes:
+    noauthAuth:
+      type: http
+      scheme: noauth
+    oauth2Auth:
+      type: http
+      scheme: oauth2

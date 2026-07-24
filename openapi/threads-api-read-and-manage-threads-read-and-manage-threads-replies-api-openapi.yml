@@ -1,0 +1,308 @@
+openapi: 3.0.0
+info:
+  title: Threads Authorization Read And Manage Threads > Read and Manage Threads Replies API
+  description: The Threads API enables developers to build their own unique integrations, and helps creators and brands manage their Threads presence at scale and easily share inspiring content with their communities.
+  version: 1.0.0
+servers:
+- url: http://{{api_host}}
+security:
+- oauth2Auth: []
+tags:
+- name: Read And Manage Threads > Read and Manage Threads Replies
+  description: The Threads Reply Moderation API allows you to read and manage replies to users' own Threads.
+paths:
+  /me/threads:
+    post:
+      tags:
+      - Read And Manage Threads > Read and Manage Threads Replies
+      summary: Control Who Can Reply
+      description: Use the [reply_control](https://developers.facebook.com/docs/threads/reply-management#control-who-can-reply) parameter to specify who can reply to a post being created for publishing.
+      requestBody:
+        content: {}
+      parameters:
+      - name: media_type
+        in: query
+        schema:
+          type: string
+        example: '{{media_type}}'
+      - name: text
+        in: query
+        schema:
+          type: string
+        example: Text
+      - name: reply_control
+        in: query
+        schema:
+          type: string
+        example: '{{reply_control}}'
+      responses:
+        undefined:
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: "{\n    \"id\": \"string\"\n}"
+  /{thread_id}/replies:
+    get:
+      tags:
+      - Read And Manage Threads > Read and Manage Threads Replies
+      summary: Get Threads Replies
+      description: Use `GET` /replies [endpoint](https://developers.facebook.com/docs/threads/reply-management#replies) to fetch a paginated list of all top-level replies.
+      parameters:
+      - name: fields
+        in: query
+        schema:
+          type: string
+        description: 'id (default): The media''s ID.
+
+
+          text: Represents text for a Threads reply. This is optional on image, video, and carousel replies.
+
+
+          username: Instagram username who created the post.
+
+          Note: This only works for public users, your own user, and users that you follow.
+
+
+          permalink: Permanent link to the post. Will be omitted if the media contains copyrighted material or has been flagged for a copyright violation.
+
+          Note: This only works for public users, your own user, and users that you follow.
+
+
+          timestamp: The publish date and time of the post in ISO 8601 format.
+
+
+          media_product_type: Surface where the media is published. In the case of Threads, the value is THREADS.
+
+
+          media_type: The media type for a Threads reply.
+
+          Values: TEXT_POST, IMAGE, VIDEO, CAROUSEL_ALBUM
+
+
+          media_url: The posts media URL. This only shows for image, video, and carousel replies.
+
+
+          shortcode: Shortcode of the media.
+
+
+          thumbnail_url: URL of thumbnail. This only shows for Threads replies with video.
+
+
+          children: List of child posts. This only shows for carousel replies.
+
+
+          has_replies: true if the Threads post or reply has replies that you can see.
+
+
+          root_post: Media ID of the top-level post or original thread in the reply tree.
+
+          Note: This only appears on replies.
+
+
+          replied_to: Media ID of the immediate parent of the reply.
+
+          Note: This only appears on replies.
+
+
+          is_reply: true if the Threads media is a reply. false if the Threads media is a top-level post.
+
+
+          hide_status: Whether or not the reply is hidden.
+
+          Values: NOT_HUSHED, UNHUSHED, HIDDEN'
+        example: text
+      - name: reverse
+        in: query
+        schema:
+          type: boolean
+        example: 'false'
+      - name: thread_id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        undefined:
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                - id: string
+                  text: reply
+                  timestamp: 2024-09-17T20:54:47+0000
+                  media_product_type: THREADS
+                  media_type: TEXT_POST
+                  permalink: string
+                  shortcode: string
+                  username: string
+                  is_quote_post: false
+                  has_replies: false
+                  is_reply: true
+                  is_reply_owned_by_me: false
+                  root_post:
+                    id: string
+                  replied_to:
+                    id: string
+                paging:
+                  cursors:
+                    before: string
+                    after: string
+  /{thread_id}/conversation:
+    get:
+      tags:
+      - Read And Manage Threads > Read and Manage Threads Replies
+      summary: Get Threads Conversations
+      description: Use `GET` /conversation [endpoint](https://developers.facebook.com/docs/threads/reply-management#conversations) to fetch a paginated and flattened list of all top-level and nested replies.
+      parameters:
+      - name: fields
+        in: query
+        schema:
+          type: string
+        description: 'id (default): The media''s ID.
+
+
+          text: Represents text for a Threads reply. This is optional on image, video, and carousel replies.
+
+
+          username: Instagram username who created the post.
+
+          Note: This only works for public users, your own user, and users that you follow.
+
+
+          permalink: Permanent link to the post. Will be omitted if the media contains copyrighted material or has been flagged for a copyright violation.
+
+          Note: This only works for public users, your own user, and users that you follow.
+
+
+          timestamp: The publish date and time of the post in ISO 8601 format.
+
+
+          media_product_type: Surface where the media is published. In the case of Threads, the value is THREADS.
+
+
+          media_type: The media type for a Threads reply.Values: TEXT_POST, IMAGE, VIDEO, CAROUSEL_ALBUM
+
+
+          media_url: The posts media URL. This only shows for image, video, and carousel replies.
+
+
+          shortcode: Shortcode of the media.
+
+
+          thumbnail_url: URL of thumbnail. This only shows for Threads replies with video.
+
+
+          children: List of child posts. This only shows for carousel replies.
+
+
+          has_replies: true if the Threads post or reply has replies that you can see.
+
+
+          root_post: Media ID of the top-level post or original thread in the reply tree.
+
+          Note: This only appears on replies.
+
+
+          replied_to: Media ID of the immediate parent of the reply.
+
+          Note: This only appears on replies.
+
+
+          is_reply: true if the Threads media is a reply. false if the Threads media is a top-level post.
+
+
+          hide_status: Whether or not the reply is hidden.
+
+          Values: NOT_HUSHED, UNHUSHED, HIDDEN'
+        example: '{{fields_replies}}'
+      - name: reverse
+        in: query
+        schema:
+          type: boolean
+        example: 'false'
+      - name: thread_id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        undefined:
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                - id: string
+                  text: reply
+                  timestamp: 2024-09-17T20:54:47+0000
+                  media_product_type: THREADS
+                  media_type: TEXT_POST
+                  permalink: string
+                  shortcode: string
+                  username: string
+                  is_quote_post: false
+                  has_replies: false
+                  is_reply: true
+                  is_reply_owned_by_me: false
+                  root_post:
+                    id: string
+                  replied_to:
+                    id: string
+                paging:
+                  cursors:
+                    before: string
+                    after: string
+  /{reply_thread_id}/manage_reply:
+    post:
+      tags:
+      - Read And Manage Threads > Read and Manage Threads Replies
+      summary: Hide Replies
+      description: Use `POST` /manage_reply [endpoint](https://developers.facebook.com/docs/threads/reply-management#hide-replies) to hide/unhide any top-level replies.
+      requestBody:
+        content: {}
+      parameters:
+      - name: hide
+        in: query
+        schema:
+          type: boolean
+        example: 'true'
+      - name: reply_thread_id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        undefined:
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+components:
+  securitySchemes:
+    noauthAuth:
+      type: http
+      scheme: noauth
+    oauth2Auth:
+      type: http
+      scheme: oauth2

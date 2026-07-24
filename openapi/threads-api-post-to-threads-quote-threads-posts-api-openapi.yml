@@ -1,0 +1,49 @@
+openapi: 3.0.0
+info:
+  title: Threads Authorization Post to Threads > Quote Threads Posts API
+  description: The Threads API enables developers to build their own unique integrations, and helps creators and brands manage their Threads presence at scale and easily share inspiring content with their communities.
+  version: 1.0.0
+servers:
+- url: http://{{api_host}}
+security:
+- oauth2Auth: []
+tags:
+- name: Post to Threads > Quote Threads Posts
+  description: "This folder will enable you to:\n\n1. Create a Media Container. The API will return a Media Container ID which will be used in the second step.\n    \n2. Publish a single Quote post."
+paths:
+  /me/threads_publish:
+    post:
+      tags:
+      - Post to Threads > Quote Threads Posts
+      summary: Publish Threads Quote Post
+      description: Use the `POST` /{threads-user-id}/threads_publish [endpoint](https://developers.facebook.com/docs/threads/posts#step-2--publish-a-threads-media-container) to publish the container ID returned in the previous step.
+      requestBody:
+        content: {}
+      parameters:
+      - name: creation_id
+        in: query
+        schema:
+          type: string
+        description: Identifier of the Threads media container created from the /threads endpoint.
+        example: '{{container_id}}'
+      responses:
+        undefined:
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: string
+components:
+  securitySchemes:
+    noauthAuth:
+      type: http
+      scheme: noauth
+    oauth2Auth:
+      type: http
+      scheme: oauth2
