@@ -1,0 +1,30 @@
+{
+  "provider": "threads-api",
+  "sources": [
+    "threads-api-authorization-api-openapi.yml",
+    "threads-api-post-to-threads-quote-threads-posts-api-openapi.yml",
+    "threads-api-post-to-threads-repost-threads-posts-api-openapi.yml",
+    "threads-api-read-and-manage-threads-read-and-manage-threads-replies-api-openapi.yml",
+    "threads-api-read-and-manage-threads-read-replies-media-objects-api-openapi.yml",
+    "threads-api-read-and-manage-threads-read-threads-insights-api-openapi.yml",
+    "threads-api-read-and-manage-threads-retrieve-threads-media-objects-api-openapi.yml",
+    "threads-api-read-and-manage-threads-retrieve-threads-profiles-api-openapi.yml",
+    "threads-api-troubleshooting-api-openapi.yml"
+  ],
+  "outputs": [
+    "threads-api-authorization-api-openapi.yml",
+    "threads-api-post-to-threads-quote-threads-posts-api-openapi.yml",
+    "threads-api-post-to-threads-repost-threads-posts-api-openapi.yml",
+    "threads-api-read-and-manage-threads-read-and-manage-threads-replies-api-openapi.yml",
+    "threads-api-read-and-manage-threads-read-replies-media-objects-api-openapi.yml",
+    "threads-api-read-and-manage-threads-read-threads-insights-api-openapi.yml",
+    "threads-api-read-and-manage-threads-retrieve-threads-media-objects-api-openapi.yml",
+    "threads-api-read-and-manage-threads-retrieve-threads-profiles-api-openapi.yml",
+    "threads-api-troubleshooting-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
