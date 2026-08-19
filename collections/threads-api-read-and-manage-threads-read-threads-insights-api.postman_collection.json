@@ -1,0 +1,214 @@
+{
+  "item": [
+    {
+      "id": "2514893b-4ed4-4dfc-af7c-70980df1232d",
+      "name": "Read And Manage Threads > Read Threads Insights",
+      "description": {
+        "content": "This folder will enable you to use the Threads API to retrieve details about posts and accounts.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "01737460-6359-4d06-ae5a-25c29f1d96c2",
+          "name": "Get Post Insights",
+          "request": {
+            "name": "Get Post Insights",
+            "description": {
+              "content": "Use the `GET` /{threads-media-id}/insights [endpoint](https://developers.facebook.com/docs/threads/insights#media-insights) to return the insights of a given Threads post.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":thread_id",
+                "insights"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "metric",
+                  "value": "<string>",
+                  "description": "views: The number of times the post was viewed.\nNote: This metric is in development.\n\nlikes: The number of likes on the post.\n\nreplies: The number of replies on the post.\nNote: This number includes only top-level replies.\n\nreposts: The number of times the post was reposted.\n\nquotes: The number of times the post was quoted."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "thread_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ca7dc5d8-86a0-41bc-b339-50b5428287cd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":thread_id",
+                    "insights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metric",
+                      "value": "{{metrics_post}}"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "thread_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "{\n    \"data\": [\n        {\n            \"name\": \"views\",\n            \"period\": \"lifetime\",\n            \"values\": [\n                {\n                    \"value\": 0\n                }\n            ],\n            \"title\": \"Views\",\n            \"description\": \"The number of times your post was viewed. This metric is in development (https://www.facebook.com/business/help/metrics-labeling)\",\n            \"id\": \"{thread_id}/insights/views/lifetime\"\n        },\n        {\n            \"name\": \"likes\",\n            \"period\": \"lifetime\",\n            \"values\": [\n                {\n                    \"value\": 0\n                }\n            ],\n            \"title\": \"Likes\",\n            \"description\": \"The number of likes on your post.\",\n            \"id\": \"{thread_id}/insights/likes/lifetime\"\n        },\n        {\n            \"name\": \"replies\",\n            \"period\": \"lifetime\",\n            \"values\": [\n                {\n                    \"value\": 0\n                }\n            ],\n            \"title\": \"Replies\",\n            \"description\": \"The number of replies on your post.\",\n            \"id\": \"{thread_id}/insights/thread_replies/lifetime\"\n        },\n        {\n            \"name\": \"reposts\",\n            \"period\": \"lifetime\",\n            \"values\": [\n                {\n                    \"value\": 0\n                }\n            ],\n            \"title\": \"Reposts\",\n            \"description\": \"The number of times your post was reposted.\",\n            \"id\": \"{thread_id}/insights/reposts/lifetime\"\n        },\n        {\n            \"name\": \"quotes\",\n            \"period\": \"lifetime\",\n            \"values\": [\n                {\n                    \"value\": 0\n                }\n            ],\n            \"title\": \"Quotes\",\n            \"description\": \"The number of times your post was quoted.\",\n            \"id\": \"{thread_id}/insights/quotes/lifetime\"\n        }\n    ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b3f48cf0-c801-4425-9e13-9f3f0b5771a5",
+          "name": "Get Account Insights",
+          "request": {
+            "name": "Get Account Insights",
+            "description": {
+              "content": "Use the `GET` /{threads-user-id}/threads_insights [endpoint](https://developers.facebook.com/docs/threads/insights#user-insights) to return the insights of a given Threads user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "me",
+                "threads_insights"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "metric",
+                  "value": "<string>",
+                  "description": "views: The number of times the post was viewed.\nNote: This metric is in development.\n\nlikes: The number of likes on the post.\n\nreplies: The number of replies on the post.\nNote: This number includes only top-level replies.\n\nreposts: The number of times the post was reposted.\n\nquotes: The number of times the post was quoted.\n\nreposts: The number of times your posts were quoted.\n\nfollowers_count: Your total number of followers on Threads.\n\nfollower_demographics: The demographic characteristics of followers, including countries, cities and gender distribution.\nNote: Does not support the since and until parameters."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "81526b7a-d0f8-4fb2-87ed-3b4120bcadc4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "me",
+                    "threads_insights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metric",
+                      "value": "{{metrics_account}}"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "{\n    \"data\": [\n        {\n            \"name\": \"views\",\n            \"period\": \"day\",\n            \"values\": [\n                {\n                    \"value\": 0,\n                    \"end_time\": \"2024-09-16T07:00:00+0000\"\n                },\n                {\n                    \"value\": 0,\n                    \"end_time\": \"2024-09-17T07:00:00+0000\"\n                }\n            ],\n            \"title\": \"views\",\n            \"description\": \"The number of times your profile was viewed.\",\n            \"id\": \"{user_id}/insights/views/day\"\n        },\n        {\n            \"name\": \"likes\",\n            \"period\": \"day\",\n            \"title\": \"likes\",\n            \"description\": \"The number of likes on your posts.\",\n            \"total_value\": {\n                \"value\": 0\n            },\n            \"id\": \"{user_id}/insights/likes/day\"\n        },\n        {\n            \"name\": \"replies\",\n            \"period\": \"day\",\n            \"title\": \"replies\",\n            \"description\": \"The number of replies on your posts.\",\n            \"total_value\": {\n                \"value\": 0\n            },\n            \"id\": \"{user_id}/insights/replies/day\"\n        },\n        {\n            \"name\": \"reposts\",\n            \"period\": \"day\",\n            \"title\": \"reposts\",\n            \"description\": \"The number of times your posts were reposted.\",\n            \"total_value\": {\n                \"value\": 0\n            },\n            \"id\": \"{user_id}/insights/reposts/day\"\n        },\n        {\n            \"name\": \"quotes\",\n            \"period\": \"day\",\n            \"title\": \"quotes\",\n            \"description\": \"The number of times your posts were quoted.\",\n            \"total_value\": {\n                \"value\": 0\n            },\n            \"id\": \"{user_id}/insights/quotes/day\"\n        },\n        {\n            \"name\": \"followers_count\",\n            \"period\": \"day\",\n            \"title\": \"followers_count\",\n            \"description\": \"This is your total number of followers on Threads.\",\n            \"total_value\": {\n                \"value\": 0\n            },\n            \"id\": \"{user_id}/insights/followers_count/day\"\n        }\n    ],\n    \"paging\": {\n        \"previous\": \"string\",\n        \"next\": \"string\"\n    }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://{{api_host}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "591d9a7b-7d37-483f-b3eb-3f0143ed5f6c",
+    "name": "Threads Authorization Read And Manage Threads > Read Threads Insights API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Threads API enables developers to build their own unique integrations, and helps creators and brands manage their Threads presence at scale and easily share inspiring content with their communities.",
+      "type": "text/plain"
+    }
+  }
+}

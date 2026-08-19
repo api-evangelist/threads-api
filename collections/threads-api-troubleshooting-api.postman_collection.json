@@ -1,0 +1,214 @@
+{
+  "item": [
+    {
+      "id": "5d4657e2-0628-40d5-8722-3006b943447f",
+      "name": "Troubleshooting",
+      "description": {
+        "content": "This folder will enbale you to perform basic toubleshooting.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cec1dd7f-6663-48a4-8cb3-efeb287df178",
+          "name": "Check Container's Publishing Status",
+          "request": {
+            "name": "Check Container's Publishing Status",
+            "description": {
+              "content": "Use `POST` /{threads-user-id}/threads_publish [endpoint](https://developers.facebook.com/docs/threads/troubleshooting#publishing-does-not-return-a-media-id) to check a container's publishing status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":container_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "EXPIRED  The container was not published within 24 hours and has expired.\nERROR  The container failed to complete the publishing process.\nFINISHED  The container and its media object are ready to be published.\nIN_PROGRESS  The container is still in the publishing process.\nPUBLISHED  The container's media object has been published.\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "container_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c66b0c3a-2342-4471-839f-e75de161fadd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":container_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "{{fields_container}}"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "container_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "{\n    \"id\": \"string\",\n    \"status\": \"FINISHED\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1913491d-367f-4c53-8f42-efbb2016b991",
+          "name": "Retrieve Publishing Quota Limit",
+          "request": {
+            "name": "Retrieve Publishing Quota Limit",
+            "description": {
+              "content": "Use `GET` /threads_publishing_limit [endpoint](https://developers.facebook.com/docs/threads/troubleshooting#retrieve-publishing-quota-limit) to check a user's publishing API quota limit.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "me",
+                "threads_publishing_limit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "user's current Threads API usage total."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a8fb56b4-dc78-41cf-abfb-d7978e128ca6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "me",
+                    "threads_publishing_limit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "{{fields_quota}}"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "{\n    \"data\": [\n        {\n            \"quota_usage\": 1,\n            \"config\": {\n                \"quota_total\": 250,\n                \"quota_duration\": 86400\n            },\n            \"reply_quota_usage\": 0,\n            \"reply_config\": {\n                \"quota_total\": 1000,\n                \"quota_duration\": 86400\n            }\n        }\n    ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://{{api_host}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e3d349a1-a9fe-49a4-9a64-2fcf5e45837d",
+    "name": "Threads Authorization Troubleshooting API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Threads API enables developers to build their own unique integrations, and helps creators and brands manage their Threads presence at scale and easily share inspiring content with their communities.",
+      "type": "text/plain"
+    }
+  }
+}

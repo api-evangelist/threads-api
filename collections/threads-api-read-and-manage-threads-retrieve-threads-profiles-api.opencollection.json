@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Threads Authorization Read And Manage Threads > Retrieve Threads Profiles API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Read And Manage Threads > Retrieve Threads Profiles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Threads User's Profile Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{api_host}}/me",
+            "params": [
+              {
+                "name": "fields",
+                "value": "{{fields_profile}}",
+                "type": "query",
+                "description": "id: Threads user ID. This is returned by default.\n\nusername: Handle or unique username on Threads. This is the same as the username on Instagram.\n\nthreads_profile_picture_url: URL of the user's profile picture on Threads.\n\nthreads_biography: Biography text on Threads profile."
+              }
+            ]
+          },
+          "docs": "Use the `GET` /{threads-user-id}?fields=id,username,... [endpoint](https://developers.facebook.com/docs/threads/threads-profiles#retrieve-a-threads-user-s-profile-information) to return profile information about a Threads user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

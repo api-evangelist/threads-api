@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Threads Authorization Troubleshooting API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Troubleshooting",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check Container's Publishing Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{api_host}}/:container_id/",
+            "params": [
+              {
+                "name": "fields",
+                "value": "{{fields_container}}",
+                "type": "query",
+                "description": "EXPIRED  The container was not published within 24 hours and has expired.\nERROR  The container failed to complete the publishing process.\nFINISHED  The container and its media object are ready to be published.\nIN_PROGRESS  The container is still in the publishing process.\nPUBLISHED  The container's media object has been published.\n"
+              },
+              {
+                "name": "container_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Use `POST` /{threads-user-id}/threads_publish [endpoint](https://developers.facebook.com/docs/threads/troubleshooting#publishing-does-not-return-a-media-id) to check a container's publishing status."
+        },
+        {
+          "info": {
+            "name": "Retrieve Publishing Quota Limit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{api_host}}/me/threads_publishing_limit",
+            "params": [
+              {
+                "name": "fields",
+                "value": "{{fields_quota}}",
+                "type": "query",
+                "description": "user's current Threads API usage total."
+              }
+            ]
+          },
+          "docs": "Use `GET` /threads_publishing_limit [endpoint](https://developers.facebook.com/docs/threads/troubleshooting#retrieve-publishing-quota-limit) to check a user's publishing API quota limit."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

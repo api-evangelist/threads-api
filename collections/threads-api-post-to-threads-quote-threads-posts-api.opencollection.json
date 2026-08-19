@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Threads Authorization Post to Threads > Quote Threads Posts API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Post to Threads > Quote Threads Posts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Publish Threads Quote Post",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{api_host}}/me/threads_publish",
+            "params": [
+              {
+                "name": "creation_id",
+                "value": "{{container_id}}",
+                "type": "query",
+                "description": "Identifier of the Threads media container created from the /threads endpoint."
+              }
+            ]
+          },
+          "docs": "Use the `POST` /{threads-user-id}/threads_publish [endpoint](https://developers.facebook.com/docs/threads/posts#step-2--publish-a-threads-media-container) to publish the container ID returned in the previous step."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

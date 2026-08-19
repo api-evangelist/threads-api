@@ -1,0 +1,126 @@
+{
+  "item": [
+    {
+      "id": "eb8005bc-4cc6-4cd0-98ad-b07e84d24831",
+      "name": "Post to Threads > Quote Threads Posts",
+      "description": {
+        "content": "This folder will enable you to:\n\n1. Create a Media Container. The API will return a Media Container ID which will be used in the second step.\n    \n2. Publish a single Quote post.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1e5f5ff9-9f2c-42a0-b43d-176e6ef25f22",
+          "name": "Publish Threads Quote Post",
+          "request": {
+            "name": "Publish Threads Quote Post",
+            "description": {
+              "content": "Use the `POST` /{threads-user-id}/threads_publish [endpoint](https://developers.facebook.com/docs/threads/posts#step-2--publish-a-threads-media-container) to publish the container ID returned in the previous step.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "me",
+                "threads_publish"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "creation_id",
+                  "value": "<string>",
+                  "description": "Identifier of the Threads media container created from the /threads endpoint."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            }
+          },
+          "response": [
+            {
+              "id": "fc750677-0c58-42fe-a177-44166661b5bd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "me",
+                    "threads_publish"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "creation_id",
+                      "value": "{{container_id}}"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://{{api_host}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7b765bc8-ba65-4b79-bd7f-56dd2cd30cdd",
+    "name": "Threads Authorization Post to Threads > Quote Threads Posts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Threads API enables developers to build their own unique integrations, and helps creators and brands manage their Threads presence at scale and easily share inspiring content with their communities.",
+      "type": "text/plain"
+    }
+  }
+}

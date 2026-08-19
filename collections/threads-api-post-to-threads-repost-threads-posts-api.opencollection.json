@@ -1,0 +1,36 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Threads Authorization Post to Threads > Repost Threads Posts API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Post to Threads > Repost Threads Posts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Repost Threads Post",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{api_host}}/:thread_id/repost",
+            "params": [
+              {
+                "name": "thread_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Use the `POST` /{threads-user-id}/threads_publish [endpoint](https://developers.facebook.com/docs/threads/posts#step-2--publish-a-threads-media-container) to publish the container ID returned in the previous step."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

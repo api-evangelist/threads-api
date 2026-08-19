@@ -1,0 +1,130 @@
+{
+  "item": [
+    {
+      "id": "d5fd32ad-d44f-4a5e-9a52-35899b8b0761",
+      "name": "Post to Threads > Repost Threads Posts",
+      "description": {
+        "content": "This folder will enable you to repost an original Threads post.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b0bd0047-e148-4431-bbca-b7a5ae62864e",
+          "name": "Repost Threads Post",
+          "request": {
+            "name": "Repost Threads Post",
+            "description": {
+              "content": "Use the `POST` /{threads-user-id}/threads_publish [endpoint](https://developers.facebook.com/docs/threads/posts#step-2--publish-a-threads-media-container) to publish the container ID returned in the previous step.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":thread_id",
+                "repost"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "thread_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            }
+          },
+          "response": [
+            {
+              "id": "2c26f6c5-3c1d-451a-929e-3ae3ca4520be",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":thread_id",
+                    "repost"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "thread_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://{{api_host}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c2b1965a-685d-4c58-8c54-a7900f5615fa",
+    "name": "Threads Authorization Post to Threads > Repost Threads Posts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Threads API enables developers to build their own unique integrations, and helps creators and brands manage their Threads presence at scale and easily share inspiring content with their communities.",
+      "type": "text/plain"
+    }
+  }
+}

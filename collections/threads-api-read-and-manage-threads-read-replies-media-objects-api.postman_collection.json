@@ -1,0 +1,125 @@
+{
+  "item": [
+    {
+      "id": "0b56c78a-df17-4d43-ae82-05b6e1352de6",
+      "name": "Read And Manage Threads > Read Replies Media Objects",
+      "description": {
+        "content": "This folder will enable you to use the Threads API to retrieve details about a user's own replies.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f3122426-ddb1-40e4-8d22-5c495c628011",
+          "name": "Get a List of All a User's Replies",
+          "request": {
+            "name": "Get a List of All a User's Replies",
+            "description": {
+              "content": "Use the `GET` /{threads-user-id}/threads [endpoint](https://developers.facebook.com/docs/threads/threads-media#retrieve-a-list-of-all-a-user-s-threads) to return a paginated list of all threads created by a user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "me",
+                "replies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "id (default): The media's ID.\n\nmedia_product_type: Surface where the media is published. In the case of Threads, the value is THREADS.\n\nmedia_type: The media type for a Threads post will be one of these values: TEXT_POST, IMAGE, VIDEO, CAROUSEL_ALBUM, AUDIO, or REPOST_FACADE.\n\nmedia_url: The posts media URL.\n\npermalink: Permanent link to the post. Will be omitted if the media contains copyrighted material or has been flagged for a copyright violation.\n\nowner: Instagram user ID who created the post.\n\nusername: Instagram username who created the post.\n\ntext: Represents text for a Threads post.\n\ntimestamp: Post time. The publish date in ISO 8601 format.\n\nshortcode: Shortcode of the media.\n\nthumbnail_url: URL of thumbnail. This only shows up for Threads media with video.\n\nchildren: List of child posts. This only shows up for carousel posts.\n\nis_quote_post: Indicates if the media is a quoted post made by another user."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Query string parameter representing the maximum number of media objects or records to return"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a9f1cd15-18cb-4f2e-bb6b-a158aa351120",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "me",
+                    "replies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "{{fields_replies}}"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"media_product_type\": \"THREADS\",\n      \"media_type\": \"TEXT_POST\",\n      \"permalink\": \"string\",\n      \"username\": \"string\",\n      \"text\": \"REPLY\",\n      \"timestamp\": \"2024-09-12T23:11:55+0000\",\n      \"shortcode\": \"string\",\n      \"is_quote_post\": false,\n      \"has_replies\": false\n    }\n  ],\n  \"paging\": {\n    \"cursors\": {\n      \"before\": \"string\",\n      \"after\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://{{api_host}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "27adf682-10b4-42cb-a7cc-35780e23505d",
+    "name": "Threads Authorization Read And Manage Threads > Read Replies Media Objects API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Threads API enables developers to build their own unique integrations, and helps creators and brands manage their Threads presence at scale and easily share inspiring content with their communities.",
+      "type": "text/plain"
+    }
+  }
+}

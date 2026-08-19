@@ -1,0 +1,468 @@
+{
+  "item": [
+    {
+      "id": "bf923977-f3fa-4a28-b7f0-a5f933e52d10",
+      "name": "Read And Manage Threads > Read and Manage Threads Replies",
+      "description": {
+        "content": "The Threads Reply Moderation API allows you to read and manage replies to users' own Threads.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "efb5fc62-e135-4c0f-8138-733cb9f5c0d6",
+          "name": "Control Who Can Reply",
+          "request": {
+            "name": "Control Who Can Reply",
+            "description": {
+              "content": "Use the [reply_control](https://developers.facebook.com/docs/threads/reply-management#control-who-can-reply) parameter to specify who can reply to a post being created for publishing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "me",
+                "threads"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "media_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "text",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "reply_control",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": ""
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            }
+          },
+          "response": [
+            {
+              "id": "cdeba5a1-5b1e-4f7a-84ad-48400d526209",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "me",
+                    "threads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "media_type",
+                      "value": "{{media_type}}"
+                    },
+                    {
+                      "key": "text",
+                      "value": "Text"
+                    },
+                    {
+                      "key": "reply_control",
+                      "value": "{{reply_control}}"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "{\n    \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "caeebd45-a4dc-472e-8184-ab68603db3fb",
+          "name": "Get Threads Replies",
+          "request": {
+            "name": "Get Threads Replies",
+            "description": {
+              "content": "Use `GET` /replies [endpoint](https://developers.facebook.com/docs/threads/reply-management#replies) to fetch a paginated list of all top-level replies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":thread_id",
+                "replies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "id (default): The media's ID.\n\ntext: Represents text for a Threads reply. This is optional on image, video, and carousel replies.\n\nusername: Instagram username who created the post.\nNote: This only works for public users, your own user, and users that you follow.\n\npermalink: Permanent link to the post. Will be omitted if the media contains copyrighted material or has been flagged for a copyright violation.\nNote: This only works for public users, your own user, and users that you follow.\n\ntimestamp: The publish date and time of the post in ISO 8601 format.\n\nmedia_product_type: Surface where the media is published. In the case of Threads, the value is THREADS.\n\nmedia_type: The media type for a Threads reply.\nValues: TEXT_POST, IMAGE, VIDEO, CAROUSEL_ALBUM\n\nmedia_url: The posts media URL. This only shows for image, video, and carousel replies.\n\nshortcode: Shortcode of the media.\n\nthumbnail_url: URL of thumbnail. This only shows for Threads replies with video.\n\nchildren: List of child posts. This only shows for carousel replies.\n\nhas_replies: true if the Threads post or reply has replies that you can see.\n\nroot_post: Media ID of the top-level post or original thread in the reply tree.\nNote: This only appears on replies.\n\nreplied_to: Media ID of the immediate parent of the reply.\nNote: This only appears on replies.\n\nis_reply: true if the Threads media is a reply. false if the Threads media is a top-level post.\n\nhide_status: Whether or not the reply is hidden.\nValues: NOT_HUSHED, UNHUSHED, HIDDEN"
+                },
+                {
+                  "disabled": false,
+                  "key": "reverse",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "thread_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8b6576f0-d982-4d1f-951d-607d8791f22f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":thread_id",
+                    "replies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "text"
+                    },
+                    {
+                      "key": "reverse",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "thread_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"text\": \"reply\",\n      \"timestamp\": \"2024-09-17T20:54:47+0000\",\n      \"media_product_type\": \"THREADS\",\n      \"media_type\": \"TEXT_POST\",\n      \"permalink\": \"string\",\n      \"shortcode\": \"string\",\n      \"username\": \"string\",\n      \"is_quote_post\": false,\n      \"has_replies\": false,\n      \"is_reply\": true,\n      \"is_reply_owned_by_me\": false,\n      \"root_post\": {\n        \"id\": \"string\"\n      },\n      \"replied_to\": {\n        \"id\": \"string\"\n      }\n    }\n  ],\n  \"paging\": {\n    \"cursors\": {\n      \"before\": \"string\",\n      \"after\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "457f8f22-e96f-4ba9-ae8d-059508f1eb53",
+          "name": "Get Threads Conversations",
+          "request": {
+            "name": "Get Threads Conversations",
+            "description": {
+              "content": "Use `GET` /conversation [endpoint](https://developers.facebook.com/docs/threads/reply-management#conversations) to fetch a paginated and flattened list of all top-level and nested replies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":thread_id",
+                "conversation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "id (default): The media's ID.\n\ntext: Represents text for a Threads reply. This is optional on image, video, and carousel replies.\n\nusername: Instagram username who created the post.\nNote: This only works for public users, your own user, and users that you follow.\n\npermalink: Permanent link to the post. Will be omitted if the media contains copyrighted material or has been flagged for a copyright violation.\nNote: This only works for public users, your own user, and users that you follow.\n\ntimestamp: The publish date and time of the post in ISO 8601 format.\n\nmedia_product_type: Surface where the media is published. In the case of Threads, the value is THREADS.\n\nmedia_type: The media type for a Threads reply.Values: TEXT_POST, IMAGE, VIDEO, CAROUSEL_ALBUM\n\nmedia_url: The posts media URL. This only shows for image, video, and carousel replies.\n\nshortcode: Shortcode of the media.\n\nthumbnail_url: URL of thumbnail. This only shows for Threads replies with video.\n\nchildren: List of child posts. This only shows for carousel replies.\n\nhas_replies: true if the Threads post or reply has replies that you can see.\n\nroot_post: Media ID of the top-level post or original thread in the reply tree.\nNote: This only appears on replies.\n\nreplied_to: Media ID of the immediate parent of the reply.\nNote: This only appears on replies.\n\nis_reply: true if the Threads media is a reply. false if the Threads media is a top-level post.\n\nhide_status: Whether or not the reply is hidden.\nValues: NOT_HUSHED, UNHUSHED, HIDDEN"
+                },
+                {
+                  "disabled": false,
+                  "key": "reverse",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "thread_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c0c661a0-2c44-4a69-9c60-53f6c3d563e7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":thread_id",
+                    "conversation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "{{fields_replies}}"
+                    },
+                    {
+                      "key": "reverse",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "thread_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"text\": \"reply\",\n      \"timestamp\": \"2024-09-17T20:54:47+0000\",\n      \"media_product_type\": \"THREADS\",\n      \"media_type\": \"TEXT_POST\",\n      \"permalink\": \"string\",\n      \"shortcode\": \"string\",\n      \"username\": \"string\",\n      \"is_quote_post\": false,\n      \"has_replies\": false,\n      \"is_reply\": true,\n      \"is_reply_owned_by_me\": false,\n      \"root_post\": {\n        \"id\": \"string\"\n      },\n      \"replied_to\": {\n        \"id\": \"string\"\n      }\n    }\n  ],\n  \"paging\": {\n    \"cursors\": {\n      \"before\": \"string\",\n      \"after\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d75c050d-8786-4f2f-bac9-420d0ac9142d",
+          "name": "Hide Replies",
+          "request": {
+            "name": "Hide Replies",
+            "description": {
+              "content": "Use `POST` /manage_reply [endpoint](https://developers.facebook.com/docs/threads/reply-management#hide-replies) to hide/unhide any top-level replies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":reply_thread_id",
+                "manage_reply"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "hide",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reply_thread_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            }
+          },
+          "response": [
+            {
+              "id": "b4548bab-972d-443e-a7af-7dfa36d35425",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":reply_thread_id",
+                    "manage_reply"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "hide",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reply_thread_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://{{api_host}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4d9f65b6-d9d5-42c7-82ad-100ae582ea8e",
+    "name": "Threads Authorization Read And Manage Threads > Read and Manage Threads Replies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Threads API enables developers to build their own unique integrations, and helps creators and brands manage their Threads presence at scale and easily share inspiring content with their communities.",
+      "type": "text/plain"
+    }
+  }
+}

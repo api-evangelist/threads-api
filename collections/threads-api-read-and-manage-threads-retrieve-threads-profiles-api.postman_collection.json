@@ -1,0 +1,113 @@
+{
+  "item": [
+    {
+      "id": "e56bd56e-1a16-4ef1-8365-6bc6bb21bed3",
+      "name": "Read And Manage Threads > Retrieve Threads Profiles",
+      "description": {
+        "content": "This folder will enable you to get profile information about a Threads user.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7902a783-6dad-43aa-8b5d-7f1dd1d7a7bf",
+          "name": "Get Threads User's Profile Information",
+          "request": {
+            "name": "Get Threads User's Profile Information",
+            "description": {
+              "content": "Use the `GET` /{threads-user-id}?fields=id,username,... [endpoint](https://developers.facebook.com/docs/threads/threads-profiles#retrieve-a-threads-user-s-profile-information) to return profile information about a Threads user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "id: Threads user ID. This is returned by default.\n\nusername: Handle or unique username on Threads. This is the same as the username on Instagram.\n\nthreads_profile_picture_url: URL of the user's profile picture on Threads.\n\nthreads_biography: Biography text on Threads profile."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "80f62a1e-5cf6-4219-a0a3-cc813ae2b582",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "{{fields_profile}}"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"username\": \"string\",\n  \"name\": \"string\",\n  \"threads_profile_picture_url\": \"string\",\n  \"threads_biography\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://{{api_host}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f3bb5386-23cd-42f4-8817-ed881c3e08c8",
+    "name": "Threads Authorization Read And Manage Threads > Retrieve Threads Profiles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Threads API enables developers to build their own unique integrations, and helps creators and brands manage their Threads presence at scale and easily share inspiring content with their communities.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Threads Authorization Read And Manage Threads > Read Replies Media Objects API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Read And Manage Threads > Read Replies Media Objects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a List of All a User's Replies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{api_host}}/me/replies",
+            "params": [
+              {
+                "name": "fields",
+                "value": "{{fields_replies}}",
+                "type": "query",
+                "description": "id (default): The media's ID.\n\nmedia_product_type: Surface where the media is published. In the case of Threads, the value is THREADS.\n\nmedia_type: The media type for a Threads post will be one of these values: TEXT_POST, IMAGE, VIDEO, CAROUSEL_ALBUM, AUDIO, or REPOST_FACADE.\n\nmedia_url: The posts media URL.\n\npermalink: Permanent link to the post. Will be omitted if the media contains copyrighted material or has been flagged for a copyright violation.\n\nowner: Instagram user ID who created the post.\n\nusername: Instagram username who created the post.\n\ntext: Represents text for a Threads post.\n\ntimestamp: Post time. The publish date in ISO 8601 format.\n\nshortcode: Shortcode of the media.\n\nthumbnail_url: URL of thumbnail. This only shows up for Threads media with video.\n\nchildren: List of child posts. This only shows up for carousel posts.\n\nis_quote_post: Indicates if the media is a quoted post made by another user."
+              },
+              {
+                "name": "limit",
+                "value": "50",
+                "type": "query",
+                "description": "Query string parameter representing the maximum number of media objects or records to return"
+              }
+            ]
+          },
+          "docs": "Use the `GET` /{threads-user-id}/threads [endpoint](https://developers.facebook.com/docs/threads/threads-media#retrieve-a-list-of-all-a-user-s-threads) to return a paginated list of all threads created by a user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

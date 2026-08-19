@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Threads Authorization Read And Manage Threads > Read Threads Insights API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Read And Manage Threads > Read Threads Insights",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Post Insights",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{api_host}}/:thread_id/insights",
+            "params": [
+              {
+                "name": "metric",
+                "value": "{{metrics_post}}",
+                "type": "query",
+                "description": "views: The number of times the post was viewed.\nNote: This metric is in development.\n\nlikes: The number of likes on the post.\n\nreplies: The number of replies on the post.\nNote: This number includes only top-level replies.\n\nreposts: The number of times the post was reposted.\n\nquotes: The number of times the post was quoted."
+              },
+              {
+                "name": "thread_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Use the `GET` /{threads-media-id}/insights [endpoint](https://developers.facebook.com/docs/threads/insights#media-insights) to return the insights of a given Threads post."
+        },
+        {
+          "info": {
+            "name": "Get Account Insights",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{api_host}}/me/threads_insights",
+            "params": [
+              {
+                "name": "metric",
+                "value": "{{metrics_account}}",
+                "type": "query",
+                "description": "views: The number of times the post was viewed.\nNote: This metric is in development.\n\nlikes: The number of likes on the post.\n\nreplies: The number of replies on the post.\nNote: This number includes only top-level replies.\n\nreposts: The number of times the post was reposted.\n\nquotes: The number of times the post was quoted.\n\nreposts: The number of times your posts were quoted.\n\nfollowers_count: Your total number of followers on Threads.\n\nfollower_demographics: The demographic characteristics of followers, including countries, cities and gender distribution.\nNote: Does not support the since and until parameters."
+              }
+            ]
+          },
+          "docs": "Use the `GET` /{threads-user-id}/threads_insights [endpoint](https://developers.facebook.com/docs/threads/insights#user-insights) to return the insights of a given Threads user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

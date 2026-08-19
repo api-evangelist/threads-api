@@ -1,0 +1,127 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Threads Authorization Read And Manage Threads > Read and Manage Threads Replies API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Read And Manage Threads > Read and Manage Threads Replies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Control Who Can Reply",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{api_host}}/me/threads",
+            "params": [
+              {
+                "name": "media_type",
+                "value": "{{media_type}}",
+                "type": "query"
+              },
+              {
+                "name": "text",
+                "value": "Text",
+                "type": "query"
+              },
+              {
+                "name": "reply_control",
+                "value": "{{reply_control}}",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Use the [reply_control](https://developers.facebook.com/docs/threads/reply-management#control-who-can-reply) parameter to specify who can reply to a post being created for publishing."
+        },
+        {
+          "info": {
+            "name": "Get Threads Replies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{api_host}}/:thread_id/replies",
+            "params": [
+              {
+                "name": "fields",
+                "value": "text",
+                "type": "query",
+                "description": "id (default): The media's ID.\n\ntext: Represents text for a Threads reply. This is optional on image, video, and carousel replies.\n\nusername: Instagram username who created the post.\nNote: This only works for public users, your own user, and users that you follow.\n\npermalink: Permanent link to the post. Will be omitted if the media contains copyrighted material or has been flagged for a copyright violation.\nNote: This only works for public users, your own user, and users that you follow.\n\ntimestamp: The publish date and time of the post in ISO 8601 format.\n\nmedia_product_type: Surface where the media is published. In the case of Threads, the value is THREADS.\n\nmedia_type: The media type for a Threads reply.\nValues: TEXT_POST, IMAGE, VIDEO, CAROUSEL_ALBUM\n\nmedia_url: The posts media URL. This only shows for image, video, and carousel replies.\n\nshortcode: Shortcode of the media.\n\nthumbnail_url: URL of thumbnail. This only shows for Threads replies with video.\n\nchildren: List of child posts. This only shows for carousel replies.\n\nhas_replies: true if the Threads post or reply has replies that you can see.\n\nroot_post: Media ID of the top-level post or original thread in the reply tree.\nNote: This only appears on replies.\n\nreplied_to: Media ID of the immediate parent of the reply.\nNote: This only appears on replies.\n\nis_reply: true if the Threads media is a reply. false if the Threads media is a top-level post.\n\nhide_status: Whether or not the reply is hidden.\nValues: NOT_HUSHED, UNHUSHED, HIDDEN"
+              },
+              {
+                "name": "reverse",
+                "value": "false",
+                "type": "query"
+              },
+              {
+                "name": "thread_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Use `GET` /replies [endpoint](https://developers.facebook.com/docs/threads/reply-management#replies) to fetch a paginated list of all top-level replies."
+        },
+        {
+          "info": {
+            "name": "Get Threads Conversations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{api_host}}/:thread_id/conversation",
+            "params": [
+              {
+                "name": "fields",
+                "value": "{{fields_replies}}",
+                "type": "query",
+                "description": "id (default): The media's ID.\n\ntext: Represents text for a Threads reply. This is optional on image, video, and carousel replies.\n\nusername: Instagram username who created the post.\nNote: This only works for public users, your own user, and users that you follow.\n\npermalink: Permanent link to the post. Will be omitted if the media contains copyrighted material or has been flagged for a copyright violation.\nNote: This only works for public users, your own user, and users that you follow.\n\ntimestamp: The publish date and time of the post in ISO 8601 format.\n\nmedia_product_type: Surface where the media is published. In the case of Threads, the value is THREADS.\n\nmedia_type: The media type for a Threads reply.Values: TEXT_POST, IMAGE, VIDEO, CAROUSEL_ALBUM\n\nmedia_url: The posts media URL. This only shows for image, video, and carousel replies.\n\nshortcode: Shortcode of the media.\n\nthumbnail_url: URL of thumbnail. This only shows for Threads replies with video.\n\nchildren: List of child posts. This only shows for carousel replies.\n\nhas_replies: true if the Threads post or reply has replies that you can see.\n\nroot_post: Media ID of the top-level post or original thread in the reply tree.\nNote: This only appears on replies.\n\nreplied_to: Media ID of the immediate parent of the reply.\nNote: This only appears on replies.\n\nis_reply: true if the Threads media is a reply. false if the Threads media is a top-level post.\n\nhide_status: Whether or not the reply is hidden.\nValues: NOT_HUSHED, UNHUSHED, HIDDEN"
+              },
+              {
+                "name": "reverse",
+                "value": "false",
+                "type": "query"
+              },
+              {
+                "name": "thread_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Use `GET` /conversation [endpoint](https://developers.facebook.com/docs/threads/reply-management#conversations) to fetch a paginated and flattened list of all top-level and nested replies."
+        },
+        {
+          "info": {
+            "name": "Hide Replies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{api_host}}/:reply_thread_id/manage_reply",
+            "params": [
+              {
+                "name": "hide",
+                "value": "true",
+                "type": "query"
+              },
+              {
+                "name": "reply_thread_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Use `POST` /manage_reply [endpoint](https://developers.facebook.com/docs/threads/reply-management#hide-replies) to hide/unhide any top-level replies."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

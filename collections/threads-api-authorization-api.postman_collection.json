@@ -1,0 +1,254 @@
+{
+  "item": [
+    {
+      "id": "3265ce46-4cbe-4f16-92e5-2ec1695f1f6e",
+      "name": "Authorization",
+      "description": {
+        "content": "Authorization is a required step to get the necessary user permissions to act on behalf of the user. Please take a look at the [walkthrough of the authentication process](https://developers.facebook.com/docs/threads/get-started/get-access-tokens-and-permissions). Once the access token is retrieved, use the [access token debugger](https://developers.facebook.com/tools/debug/accesstoken) to check if the access token has the correct permissions (including `threads_basic`, `threads_content_publish`, `threads_read_replies`, `threads_manage_replies`, `threads_manage_insights`) and verify that the access token hasn't expired.\n\nFollow the [documentation](https://developers.facebook.com/docs/threads/get-started/long-lived-tokens) to exchange a short-lived Threads User Access Token for a long-lived token and refresh unexpired long-lived Threads User Access tokens. **Note:** The `threads_basic` permission is sufficient for the exchange or refresh process.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fec81a7d-4d7a-45f2-9510-581307983dcb",
+          "name": "Exchange the Code For a Token",
+          "request": {
+            "name": "Exchange the Code For a Token",
+            "description": {
+              "content": "Once you receive a code, exchange it for a short-lived access token by sending a `POST` request to the /oauth/access_token [endpoint](https://developers.facebook.com/docs/threads/get-started/get-access-tokens-and-permissions#step-2--exchange-the-code-for-a-token)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth",
+                "access_token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>",
+                  "description": "Your Threads App ID displayed in App Dashboard > App settings > Basic > Threads App ID. Example: 990602627938098."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_secret",
+                  "value": "<string>",
+                  "description": "Your Threads App Secret displayed in App Dashboard > App settings > Basic > Threads App secret. Example: a1b2C3D4."
+                },
+                {
+                  "disabled": false,
+                  "key": "code",
+                  "value": "<string>",
+                  "description": "Authorization Code"
+                },
+                {
+                  "disabled": false,
+                  "key": "grant_type",
+                  "value": "<string>",
+                  "description": "This value is required"
+                },
+                {
+                  "disabled": false,
+                  "key": "redirect_uri",
+                  "value": "<string>",
+                  "description": "The redirect URI you passed when you directed the user to the Authorization Window. This must be the same URI or the request will be rejected."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": []
+            }
+          },
+          "response": [
+            {
+              "id": "51b87a75-3c70-44ce-acee-cc4ef9fc6269",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth",
+                    "access_token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "{{app_id}}"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "{{app_secret}}"
+                    },
+                    {
+                      "key": "code",
+                      "value": "{{code}}"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "{{redirect_uri}}"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": []
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"string\",\n  \"user_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3a68ea74-fb03-45d0-a39f-c9d6acef6429",
+          "name": "Get Long-Lived Access Token",
+          "request": {
+            "name": "Get Long-Lived Access Token",
+            "description": {
+              "content": "Use the `GET` /access_token [endpoint](https://developers.facebook.com/docs/threads/get-started/long-lived-tokens#get-a-long-lived-token) to exchange a short-lived Threads user access token for a long-lived token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access_token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "grant_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "client_secret",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "18bf2c10-739d-4561-a2d2-fc35181d671a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access_token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "grant_type",
+                      "value": "th_exchange_token"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "{{app_secret}}"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"string\",\n  \"token_type\": \"bearer\",\n  \"expires_in\": 5184000\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://{{api_host}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1803b8bb-95ba-412e-9d28-ad4b02a3f50e",
+    "name": "Threads Authorization API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Threads API enables developers to build their own unique integrations, and helps creators and brands manage their Threads presence at scale and easily share inspiring content with their communities.",
+      "type": "text/plain"
+    }
+  }
+}
