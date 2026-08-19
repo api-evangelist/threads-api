@@ -30,7 +30,7 @@ tags:
 created: '2024-11-16'
 modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/threads-api/refs/heads/main/apis.yml
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: threads-api:threads-api-authorization-api
   name: Threads Authorization API
