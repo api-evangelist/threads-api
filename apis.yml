@@ -78,7 +78,8 @@ apis:
     \ Media Container ID which will be used in the second step.\n    \n2. Publish a single Quote post."
   humanURL: https://developers.facebook.com/docs/threads/
   baseURL: https://graph.threads.net
-  tags:
+  tags: []
+  tags_raw:
   - Post to Threads > Quote Threads Posts
   properties:
   - type: OpenAPI
@@ -106,7 +107,8 @@ apis:
   description: This folder will enable you to repost an original Threads post.
   humanURL: https://developers.facebook.com/docs/threads/
   baseURL: https://graph.threads.net
-  tags:
+  tags: []
+  tags_raw:
   - Post to Threads > Repost Threads Posts
   properties:
   - type: OpenAPI
@@ -135,7 +137,8 @@ apis:
     The Threads Reply Moderation API allows you to read and manage replies to users' own Threads.
   humanURL: https://developers.facebook.com/docs/threads/
   baseURL: https://graph.threads.net
-  tags:
+  tags: []
+  tags_raw:
   - Read And Manage Threads > Read and Manage Threads Replies
   properties:
   - type: OpenAPI
@@ -165,7 +168,8 @@ apis:
     This folder will enable you to use the Threads API to retrieve details about a user's own replies.
   humanURL: https://developers.facebook.com/docs/threads/
   baseURL: https://graph.threads.net
-  tags:
+  tags: []
+  tags_raw:
   - Read And Manage Threads > Read Replies Media Objects
   properties:
   - type: OpenAPI
@@ -194,7 +198,8 @@ apis:
     This folder will enable you to use the Threads API to retrieve details about posts and accounts.
   humanURL: https://developers.facebook.com/docs/threads/
   baseURL: https://graph.threads.net
-  tags:
+  tags: []
+  tags_raw:
   - Read And Manage Threads > Read Threads Insights
   properties:
   - type: OpenAPI
@@ -222,7 +227,8 @@ apis:
   description: This folder will enable you to use the Threads API to retrieve details about posts.
   humanURL: https://developers.facebook.com/docs/threads/
   baseURL: https://graph.threads.net
-  tags:
+  tags: []
+  tags_raw:
   - Read And Manage Threads > Retrieve Threads Media Objects
   properties:
   - type: OpenAPI
@@ -251,7 +257,8 @@ apis:
   description: This folder will enable you to get profile information about a Threads user.
   humanURL: https://developers.facebook.com/docs/threads/
   baseURL: https://graph.threads.net
-  tags:
+  tags: []
+  tags_raw:
   - Read And Manage Threads > Retrieve Threads Profiles
   properties:
   - type: OpenAPI
