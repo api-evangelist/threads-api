@@ -322,6 +322,9 @@ apis:
   - type: JSONSchema
     url: json-schema/threads-api-thread-schema.json
 common:
+  - type: CapabilityMap
+    url: capabilities/threads-api-capability-edges.yml
+    name: Threads Business Capability Map
   - type: AgenticAccess
     url: agentic-access/threads-api-agentic-access.yml
   - type: VulnerabilityDisclosure
