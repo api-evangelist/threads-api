@@ -5,6 +5,18 @@ description: >-
   publishing text, image, video, carousel, and quote posts, reading and managing replies, accessing profile information,
   retrieving media insights, and managing account settings. Authentication uses OAuth 2.0 with scoped access tokens.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
