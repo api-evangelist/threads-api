@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Threads Authorization Read And Manage Threads > Read and Manage Threads Replies API
+  title: Read And Manage Threads > Read and Manage Threads Replies…
   description: The Threads API enables developers to build their own unique integrations, and helps creators and brands manage their Threads presence at scale and easily share inspiring content with their communities.
   version: 1.0.0
 servers:
@@ -16,7 +16,7 @@ paths:
       tags:
       - Read And Manage Threads > Read and Manage Threads Replies
       summary: Control Who Can Reply
-      description: Use the [reply_control](https://developers.facebook.com/docs/threads/reply-management#control-who-can-reply) parameter to specify who can reply to a post being created for publishing.
+      description: Use the reply_control parameter to specify who can reply to a post being created for publishing.
       requestBody:
         content: {}
       parameters:
@@ -42,12 +42,14 @@ paths:
               schema:
                 type: string
               example: "{\n    \"id\": \"string\"\n}"
+      operationId: postMeThreads
+      x-operation-id-source: derived
   /{thread_id}/replies:
     get:
       tags:
       - Read And Manage Threads > Read and Manage Threads Replies
       summary: Get Threads Replies
-      description: Use `GET` /replies [endpoint](https://developers.facebook.com/docs/threads/reply-management#replies) to fetch a paginated list of all top-level replies.
+      description: Use `GET` /replies endpoint to fetch a paginated list of all top-level replies.
       parameters:
       - name: fields
         in: query
@@ -155,12 +157,14 @@ paths:
                   cursors:
                     before: string
                     after: string
+      operationId: getByThreadIdReplies
+      x-operation-id-source: derived
   /{thread_id}/conversation:
     get:
       tags:
       - Read And Manage Threads > Read and Manage Threads Replies
       summary: Get Threads Conversations
-      description: Use `GET` /conversation [endpoint](https://developers.facebook.com/docs/threads/reply-management#conversations) to fetch a paginated and flattened list of all top-level and nested replies.
+      description: Use `GET` /conversation endpoint to fetch a paginated and flattened list of all top-level and nested replies.
       parameters:
       - name: fields
         in: query
@@ -266,12 +270,14 @@ paths:
                   cursors:
                     before: string
                     after: string
+      operationId: getByThreadIdConversation
+      x-operation-id-source: derived
   /{reply_thread_id}/manage_reply:
     post:
       tags:
       - Read And Manage Threads > Read and Manage Threads Replies
       summary: Hide Replies
-      description: Use `POST` /manage_reply [endpoint](https://developers.facebook.com/docs/threads/reply-management#hide-replies) to hide/unhide any top-level replies.
+      description: Use `POST` /manage_reply endpoint to hide/unhide any top-level replies.
       requestBody:
         content: {}
       parameters:
@@ -298,6 +304,8 @@ paths:
                 type: object
               example:
                 success: true
+      operationId: postByReplyThreadIdManageReply
+      x-operation-id-source: derived
 components:
   securitySchemes:
     noauthAuth:

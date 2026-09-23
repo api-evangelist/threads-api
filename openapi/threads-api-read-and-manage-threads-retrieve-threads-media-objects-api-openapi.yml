@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Threads Authorization Read And Manage Threads > Retrieve Threads Media Objects API
+  title: Read And Manage Threads > Retrieve Threads Media Objects API
   description: The Threads API enables developers to build their own unique integrations, and helps creators and brands manage their Threads presence at scale and easily share inspiring content with their communities.
   version: 1.0.0
 servers:
@@ -16,7 +16,7 @@ paths:
       tags:
       - Read And Manage Threads > Retrieve Threads Media Objects
       summary: Get a List of All a User's Threads
-      description: Use the `GET` /{threads-user-id}/threads [endpoint](https://developers.facebook.com/docs/threads/threads-media#retrieve-a-list-of-all-a-user-s-threads) to return a paginated list of all threads created by a user.
+      description: Use the `GET` /{threads-user-id}/threads endpoint to return a paginated list of all threads created by a user.
       parameters:
       - name: fields
         in: query
@@ -95,12 +95,14 @@ paths:
                   cursors:
                     before: string
                     after: string
+      operationId: getMeThreads
+      x-operation-id-source: derived
   /{thread_id}:
     get:
       tags:
       - Read And Manage Threads > Retrieve Threads Media Objects
       summary: Get Threads Post Details
-      description: Use the `GET` /{threads-media-id} [endpoint](https://developers.facebook.com/docs/threads/threads-media#retrieve-a-single-threads-media-object) to return an individual Threads media object.
+      description: Use the `GET` /{threads-media-id} endpoint to return an individual Threads media object.
       parameters:
       - name: fields
         in: query
@@ -173,6 +175,8 @@ paths:
                 shortcode: string
                 is_quote_post: false
                 has_replies: false
+      operationId: getByThreadId
+      x-operation-id-source: derived
 components:
   securitySchemes:
     noauthAuth:

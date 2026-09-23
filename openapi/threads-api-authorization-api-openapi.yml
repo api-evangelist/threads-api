@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   title: Threads Authorization API
   description: The Threads API enables developers to build their own unique integrations, and helps creators and brands manage their Threads presence at scale and easily share inspiring content with their communities.
@@ -9,17 +9,14 @@ security:
 - oauth2Auth: []
 tags:
 - name: Authorization
-  description: 'Authorization is a required step to get the necessary user permissions to act on behalf of the user. Please take a look at the [walkthrough of the authentication process](https://developers.facebook.com/docs/threads/get-started/get-access-tokens-and-permissions). Once the access token is retrieved, use the [access token debugger](https://developers.facebook.com/tools/debug/accesstoken) to check if the access token has the correct permissions (including `threads_basic`, `threads_content_publish`, `threads_read_replies`, `threads_manage_replies`, `threads_manage_insights`) and verify that the access token hasn''t expired.
-
-
-    Follow the [documentation](https://developers.facebook.com/docs/threads/get-started/long-lived-tokens) to exchange a short-lived Threads User Access Token for a long-lived token and refresh unexpired long-lived Threads User Access tokens. **Note:** The `threads_basic` permission is sufficient for the exchange or refresh process.'
+  description: Authorization is a required step to get the necessary user permissions to act on behalf of the user.
 paths:
   /oauth/access_token:
     post:
       tags:
       - Authorization
       summary: Exchange the Code For a Token
-      description: Once you receive a code, exchange it for a short-lived access token by sending a `POST` request to the /oauth/access_token [endpoint](https://developers.facebook.com/docs/threads/get-started/get-access-tokens-and-permissions#step-2--exchange-the-code-for-a-token)
+      description: Once you receive a code, exchange it for a short-lived access token by sending a `POST` request to the /oauth/access_token endpoint
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -72,12 +69,14 @@ paths:
               example:
                 access_token: string
                 user_id: string
+      operationId: postOauthAccessToken
+      x-operation-id-source: derived
   /access_token:
     get:
       tags:
       - Authorization
       summary: Get Long-Lived Access Token
-      description: Use the `GET` /access_token [endpoint](https://developers.facebook.com/docs/threads/get-started/long-lived-tokens#get-a-long-lived-token) to exchange a short-lived Threads user access token for a long-lived token.
+      description: Use the `GET` /access_token endpoint to exchange a short-lived Threads user access token for a long-lived token.
       parameters:
       - name: grant_type
         in: query
@@ -104,6 +103,8 @@ paths:
                 access_token: string
                 token_type: bearer
                 expires_in: 5184000
+      operationId: getAccessToken
+      x-operation-id-source: derived
 components:
   securitySchemes:
     noauthAuth:

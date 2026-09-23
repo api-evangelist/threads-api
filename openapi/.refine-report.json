@@ -1,23 +1,15 @@
 {
   "provider": "threads-api",
   "sources": [
-    "threads-api-authorization-api-openapi.yml",
-    "threads-api-post-to-threads-quote-threads-posts-api-openapi.yml",
-    "threads-api-post-to-threads-repost-threads-posts-api-openapi.yml",
-    "threads-api-read-and-manage-threads-read-and-manage-threads-replies-api-openapi.yml",
-    "threads-api-read-and-manage-threads-read-replies-media-objects-api-openapi.yml",
-    "threads-api-read-and-manage-threads-read-threads-insights-api-openapi.yml",
-    "threads-api-read-and-manage-threads-retrieve-threads-media-objects-api-openapi.yml",
-    "threads-api-read-and-manage-threads-retrieve-threads-profiles-api-openapi.yml",
-    "threads-api-troubleshooting-api-openapi.yml"
+    "_original/threads-api-openapi.yml"
   ],
   "outputs": [
     "threads-api-authorization-api-openapi.yml",
     "threads-api-post-to-threads-quote-threads-posts-api-openapi.yml",
     "threads-api-post-to-threads-repost-threads-posts-api-openapi.yml",
-    "threads-api-read-and-manage-threads-read-and-manage-threads-replies-api-openapi.yml",
     "threads-api-read-and-manage-threads-read-replies-media-objects-api-openapi.yml",
     "threads-api-read-and-manage-threads-read-threads-insights-api-openapi.yml",
+    "threads-api-read-and-manage-threads-read-and-manage-threads-replies-api-openapi.yml",
     "threads-api-read-and-manage-threads-retrieve-threads-media-objects-api-openapi.yml",
     "threads-api-read-and-manage-threads-retrieve-threads-profiles-api-openapi.yml",
     "threads-api-troubleshooting-api-openapi.yml"
@@ -25,6 +17,22 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "1 archived document(s) dropped as subsets of other archived documents",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "threads-api-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "_original/threads-api.yml: archived document superseded by a larger archived document",
+    "threads-api-authorization-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "threads-api-post-to-threads-quote-threads-posts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "threads-api-post-to-threads-repost-threads-posts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "threads-api-read-and-manage-threads-read-and-manage-threads-replies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "threads-api-read-and-manage-threads-read-replies-media-objects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "threads-api-read-and-manage-threads-read-threads-insights-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "threads-api-read-and-manage-threads-retrieve-threads-media-objects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "threads-api-read-and-manage-threads-retrieve-threads-profiles-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "threads-api-troubleshooting-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

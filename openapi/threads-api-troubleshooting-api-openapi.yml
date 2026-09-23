@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Threads Authorization Troubleshooting API
+  title: Threads Troubleshooting API
   description: The Threads API enables developers to build their own unique integrations, and helps creators and brands manage their Threads presence at scale and easily share inspiring content with their communities.
   version: 1.0.0
 servers:
@@ -16,7 +16,7 @@ paths:
       tags:
       - Troubleshooting
       summary: Check Container's Publishing Status
-      description: Use `POST` /{threads-user-id}/threads_publish [endpoint](https://developers.facebook.com/docs/threads/troubleshooting#publishing-does-not-return-a-media-id) to check a container's publishing status.
+      description: Use `POST` /{threads-user-id}/threads_publish endpoint to check a container's publishing status.
       parameters:
       - name: fields
         in: query
@@ -46,12 +46,14 @@ paths:
               schema:
                 type: string
               example: "{\n    \"id\": \"string\",\n    \"status\": \"FINISHED\"\n}"
+      operationId: getByContainerId
+      x-operation-id-source: derived
   /me/threads_publishing_limit:
     get:
       tags:
       - Troubleshooting
       summary: Retrieve Publishing Quota Limit
-      description: Use `GET` /threads_publishing_limit [endpoint](https://developers.facebook.com/docs/threads/troubleshooting#retrieve-publishing-quota-limit) to check a user's publishing API quota limit.
+      description: Use `GET` /threads_publishing_limit endpoint to check a user's publishing API quota limit.
       parameters:
       - name: fields
         in: query
@@ -66,6 +68,8 @@ paths:
               schema:
                 type: string
               example: "{\n    \"data\": [\n        {\n            \"quota_usage\": 1,\n            \"config\": {\n                \"quota_total\": 250,\n                \"quota_duration\": 86400\n            },\n            \"reply_quota_usage\": 0,\n            \"reply_config\": {\n                \"quota_total\": 1000,\n                \"quota_duration\": 86400\n            }\n        }\n    ]\n}"
+      operationId: getMeThreadsPublishingLimit
+      x-operation-id-source: derived
 components:
   securitySchemes:
     noauthAuth:
