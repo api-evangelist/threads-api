@@ -329,6 +329,12 @@ apis:
   - type: JSONSchema
     url: json-schema/threads-api-thread-schema.json
 common:
+  - type: Plans
+    url: plans/threads-api-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/threads-api-rate-limits.yml
+  - type: FinOps
+    url: finops/threads-api-finops.yml
   - type: CapabilityMap
     url: capabilities/threads-api-capability-edges.yml
     name: Threads Business Capability Map
